@@ -59,4 +59,5 @@ public abstract class MolduraAbstrata extends JPanel {
 		configuraMiolo();
 	}
 
+
 }

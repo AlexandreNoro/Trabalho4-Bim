@@ -69,6 +69,27 @@ public class TelaPrincipal extends JFrame {
 				block();
 			}
 		});
+		
+		JMenuItem mntmUsuario = new JMenuItem("Usuario");
+		mntmUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				abrirTelaUsuario();
+			}
+
+		});
+		
+		mnCadastros.add(mntmUsuario);
+		
+		JMenuItem mntmProduto = new JMenuItem("Produto");
+		mntmProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				abrirTelaProduto();
+			}
+
+		});
+		mnCadastros.add(mntmProduto);
+		
+		
 		mnCadastros.add(mntmBloquear);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,6 +99,10 @@ public class TelaPrincipal extends JFrame {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
+
+	
+
+
 
 	protected void block() {
 		setGlassPane(glass);
@@ -125,6 +150,34 @@ public class TelaPrincipal extends JFrame {
 		telaCadastroCliente.setCloseAction(action);
 
 		tabbedPane.addTab("Tela ", telaCadastroCliente);
+	}
+	
+	private void abrirTelaProduto() {
+		TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaCadastroProduto);
+			}
+		};
+		telaCadastroProduto.setCloseAction(action);
+
+		tabbedPane.addTab("Tela ", telaCadastroProduto);
+		
+	}
+	
+	protected void abrirTelaUsuario() {
+		TelaCadastroUsuario telaCadastroUsuario = new TelaCadastroUsuario();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaCadastroUsuario);
+			}
+		};
+		telaCadastroUsuario.setCloseAction(action);
+
+		tabbedPane.addTab("Tela ", telaCadastroUsuario);
+		
 	}
 
 }
