@@ -5,6 +5,7 @@ import java.security.Timestamp;
 
 
 //Classe Venda: Criado classe venda com valores necessários para venda.
+
 public class Vendas {
 
 	private BigDecimal vlrtotal;
