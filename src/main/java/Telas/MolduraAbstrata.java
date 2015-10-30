@@ -37,7 +37,7 @@ public abstract class MolduraAbstrata extends JPanel {
 		gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblOl = new JLabel("Olá");
+		JLabel lblOl = new JLabel("Cadastro");
 		GridBagConstraints gbc_lblOl = new GridBagConstraints();
 		gbc_lblOl.insets = new Insets(0, 0, 0, 5);
 		gbc_lblOl.gridx = 0;

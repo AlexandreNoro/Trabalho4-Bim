@@ -2,6 +2,7 @@ package Telas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Frame;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +16,7 @@ import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.function.Function;
+import javax.swing.SwingConstants;
 
 public class TelaPrincipal extends JFrame {
 
@@ -63,7 +65,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnCadastros.add(mntmCliente);
 		
-		JMenuItem mntmBloquear = new JMenuItem("BLOQUEAR");
+		JMenuItem mntmBloquear = new JMenuItem("Bloquear");
 		mntmBloquear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				block();
@@ -91,6 +93,18 @@ public class TelaPrincipal extends JFrame {
 		
 		
 		mnCadastros.add(mntmBloquear);
+		
+		JMenu mnSistema = new JMenu("Sistema");
+		menuBar.add(mnSistema);
+		
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+
+		});
+		mnSistema.add(mntmSair);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -101,8 +115,6 @@ public class TelaPrincipal extends JFrame {
 	}
 
 	
-
-
 
 	protected void block() {
 		setGlassPane(glass);
@@ -138,7 +150,7 @@ public class TelaPrincipal extends JFrame {
 
 		glass.setVisible(true);
 	}
-
+	//Método para abrir a tela de cadastro de Clientes
 	private void abrirTela() {
 		TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
 		ActionListener action = new ActionListener() {
@@ -149,9 +161,10 @@ public class TelaPrincipal extends JFrame {
 		};
 		telaCadastroCliente.setCloseAction(action);
 
-		tabbedPane.addTab("Tela ", telaCadastroCliente);
+		tabbedPane.addTab("Cliente ", telaCadastroCliente);
 	}
 	
+	//Método para abrir a tela de cadastro de produtos
 	private void abrirTelaProduto() {
 		TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
 		ActionListener action = new ActionListener() {
@@ -162,10 +175,10 @@ public class TelaPrincipal extends JFrame {
 		};
 		telaCadastroProduto.setCloseAction(action);
 
-		tabbedPane.addTab("Tela ", telaCadastroProduto);
+		tabbedPane.addTab("Produto ", telaCadastroProduto);
 		
 	}
-	
+	//Método para abrir a tela de cadastro de Usuarios
 	protected void abrirTelaUsuario() {
 		TelaCadastroUsuario telaCadastroUsuario = new TelaCadastroUsuario();
 		ActionListener action = new ActionListener() {
@@ -176,8 +189,9 @@ public class TelaPrincipal extends JFrame {
 		};
 		telaCadastroUsuario.setCloseAction(action);
 
-		tabbedPane.addTab("Tela ", telaCadastroUsuario);
+		tabbedPane.addTab("Usuário ", telaCadastroUsuario);
 		
 	}
+	
 
 }
