@@ -1,7 +1,6 @@
 package AcessoAoBanco;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,45 +13,15 @@ import br.univel.cadastroCliente.Genero;
 
 public class ClienteDaoAcesso implements ClienteDao {
 
-	private static Connection con;
-
-	private static ClienteDaoAcesso instanciar;
+	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 	
-	//Construtor da classe
-	private ClienteDaoAcesso() {
-
-	}
-	//Método para retornar nova Instância
-	public static ClienteDaoAcesso getNovaInstancia() {
-		if (instanciar == null)
-			return instanciar = new ClienteDaoAcesso();
-		return instanciar;
-	}
-	
-	//Método para abrir conexao com o banco
-	private void abrirConexao() throws SQLException {
-
-		String url = "jdbc:h2:~/Alexandre";
-		String user = "sa";
-		String password = "sa";
-		con = DriverManager.getConnection(url, user, password);
-
-	}
-
-	//Método para fechar conexão com o banco
-	private void fecharConexao() throws SQLException {
-
-		con.close();
-
-	}
-
 	//Método inserir
 	@Override
 	public void inserir(Cliente c) {
 
 		PreparedStatement ps;
 		try {
-			ps = con.prepareStatement(
+			ps = conexao.prepareStatement(
 					"INSERT INTO CLIENTE(ID,NOME,ENDERECO,TELEFONE,CIDADE,ESTADO,GENERO,EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
 			ps.setInt(1, c.getId());
@@ -81,7 +50,7 @@ public class ClienteDaoAcesso implements ClienteDao {
 
 		PreparedStatement ps;
 		try {
-			ps = con.prepareStatement(
+			ps = conexao.prepareStatement(
 					"UPDATE CLIENTE SET NOME = ?,ENDERECO = ?,TELEFONE = ?,ESTADO = ?,GENERO = ?, EMAIL = ?  WHERE ID ="
 							+ c.getId());
 
@@ -111,7 +80,7 @@ public class ClienteDaoAcesso implements ClienteDao {
 
 		PreparedStatement ps;
 		try {
-			ps = con.prepareStatement("DELETE FROM CLIENTE WHERE ID =" + c.getId());
+			ps = conexao.prepareStatement("DELETE FROM CLIENTE WHERE ID =" + c.getId());
 
 			int res = ps.executeUpdate();
 
@@ -136,7 +105,7 @@ public class ClienteDaoAcesso implements ClienteDao {
 		Estado uf = Estado.PR;
 		Genero gn = Genero.M;
 		try {
-			st = con.createStatement();
+			st = conexao.createStatement();
 			rs = st.executeQuery(
 					"SELECT NOME,ENDERECO,TELEFONE,CIDADE,ESTADO,GENERO,EMAIL  FROM CLIENTE WHERE ID=" + id);
 			rs.next();
