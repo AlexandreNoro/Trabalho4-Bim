@@ -106,19 +106,24 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 		Cliente c = null;
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery(
-					"SELECT NOME,ENDERECO,TELEFONE,CIDADE,ESTADO,GENERO,EMAIL  FROM CLIENTE WHERE IDCOD_C =" + id);
+			rs = st.executeQuery("SELECT NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
+					+ "FROM CLIENTE WHERE IDCOD_C = " + id);
 			rs.next();
-			c = new Cliente(id, rs.getString("NOME"), rs.getString("ENDERECO"), rs.getString("TELEFONE"),
-					rs.getString("CIDADE"), Estado.valueOf(Estado.class, rs.getString("ESTADO")),
-					Genero.valueOf(Genero.class, rs.getString("GENERO")), rs.getString("EMAIL"));
+			if (rs.getString("NOME") != null) {
+				c = new Cliente(rs.getString("NOME"), rs.getString("TELEFONE"),
+						rs.getString("ENDERECO"), rs.getString("CIDADE"),
+						Estado.valueOf(Estado.class, rs.getString("ESTADO")),
+						rs.getString("EMAIL"), Genero.valueOf(Genero.class,
+								rs.getString("GENERO")));
+			}
 			rs.close();
 			st.close();
 			return c;
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao buscar o Cliente desejado!\n" + e.getMessage());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"Ocorreu um erro ao buscar o Cliente desejado!\n" + e.getMessage());
 		}
-		return c;
+		return null;
 	}
 
 	// Método para listar
@@ -132,24 +137,22 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 		ArrayList<Cliente> lista = new ArrayList<Cliente>();
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery(
-					"SELECT IDCOD_C, NOME, ENDERECO, TELEFONE, CIDADE, ESTADO, GENERO, EMAIL FROM CLIENTE");
+			rs = st.executeQuery("SELECT IDCOD_C, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
+					+ "FROM CLIENTE");
 			while (rs.next()) {
-				lista.add(c = new Cliente(rs.getInt("IDCOD_C"), rs.getString("NOME"), rs.getString("ENDERECO"),
-						rs.getString("TELEFONE"), rs.getString("CIDADE"),
-						Estado.valueOf(Estado.class, rs.getString("ESTADO")),
-						Genero.valueOf(Genero.class, rs.getString("GENERO")), rs.getString("EMAIL")));
+				lista.add(c = new Cliente(rs.getInt("IDCOD_C"), rs.getString("NOME"), rs
+						.getString("TELEFONE"), rs.getString("ENDERECO"), rs
+						.getString("CIDADE"), Estado.valueOf(Estado.class,
+						rs.getString("ESTADO")), rs.getString("EMAIL"), Genero
+						.valueOf(Genero.class, rs.getString("GENERO"))));
 			}
-
 			rs.close();
 			st.close();
-
-			if (lista != null) {
+			if (lista != null)
 				return lista;
-			}
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro ao listar clientes!!!/n" + e.getMessage());
+			e.printStackTrace();
 		}
 		return null;
 	}

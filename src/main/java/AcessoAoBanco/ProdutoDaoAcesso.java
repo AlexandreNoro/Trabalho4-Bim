@@ -109,7 +109,7 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 			return p;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,
-					"Ocorreu um erro ao buscar o " + "Produto desejado!\n" + e.getMessage());
+					"Ocorreu um erro ao buscar o Produto desejado!\n" + e.getMessage());
 		}
 		return null;
 	}

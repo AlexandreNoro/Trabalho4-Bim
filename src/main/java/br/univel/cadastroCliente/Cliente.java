@@ -1,6 +1,5 @@
 package br.univel.cadastroCliente;
 
-
 public class Cliente {
 
 	private int id;
@@ -12,7 +11,7 @@ public class Cliente {
 	private Genero genero;
 	private String email;
 
-	//Getters e Setters dos atributos
+	// Getters e Setters dos atributos
 	public int getId() {
 		return id;
 	}
@@ -77,29 +76,32 @@ public class Cliente {
 		this.genero = genero;
 	}
 
-	//Construtores da classe
-	public Cliente(int id, String nome, String endereco, String telefone, String cidade, Estado uf, Genero gn,
-			String email) {
+	// Construtores da classe
+	public Cliente() {
+	}
 
-		super();
+	public Cliente(int id, String nome, String telefone, String endereco, String cidade, Estado estado, String email,
+			Genero genero) {
 		this.id = id;
 		this.nome = nome;
-		this.endereco = endereco;
 		this.telefone = telefone;
+		this.endereco = endereco;
 		this.cidade = cidade;
-		this.estado = uf;
-		this.genero = gn;
+		this.estado = estado;
 		this.email = email;
+		this.genero = genero;
 	}
 
-	public Cliente(int id) {
-		super();
-		this.id = id;
-	}
-	
-	public String toString() {
-		return "Cliente[ " + this.nome + ", " + this.endereco + ", " + this.telefone + ", " + this.cidade + ", "
-				+ this.estado.getNome() + ", " + this.genero.getNome() + ", " + this.email + "] \n";
+	public Cliente(String nome, String telefone, String endereco, String cidade, Estado estado, String email,
+			Genero genero) {
+		this.nome = nome;
+		this.telefone = telefone;
+		this.endereco = endereco;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.email = email;
+		this.genero = genero;
+
 	}
 
 }
