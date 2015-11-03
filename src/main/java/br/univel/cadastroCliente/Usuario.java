@@ -4,7 +4,7 @@ public class Usuario {
 
 	private int id;
 	private int idCliente;
-	private Cliente cliente;
+	private String cliente;
 	private String senha;
 
 	public int getId() {
@@ -15,11 +15,11 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public Cliente getCliente() {
+	public String getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setCliente(String cliente) {
 		this.cliente = cliente;
 	}
 

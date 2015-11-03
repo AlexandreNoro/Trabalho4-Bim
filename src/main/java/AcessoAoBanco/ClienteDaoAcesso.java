@@ -35,7 +35,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 			ps.setObject(6, c.getEstado().getNome());
 			ps.setObject(7, c.getGenero().getNome());
 			ps.setString(8, c.getEmail());
-			
+
 			ps.executeUpdate();
 
 			ps.close();
@@ -65,7 +65,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 			ps.setObject(6, c.getEstado().name() + "");
 			ps.setObject(7, c.getGenero().name() + "");
 			ps.setString(8, c.getEmail() + "");
-			
+
 			ps.executeUpdate();
 
 			ps.close();
@@ -89,7 +89,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 
 			ps.close();
 
-			JOptionPane.showMessageDialog(null,  "Cliente excluído com Sucesso!!!");
+			JOptionPane.showMessageDialog(null, "Cliente excluído com Sucesso!!!");
 
 		} catch (SQLException e) {
 
@@ -117,7 +117,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 			st.close();
 			return c;
 		} catch (SQLException e) {
-			System.out.println("Ocorreu um erro ao buscar o Cliente desejado!\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao buscar o Cliente desejado!\n" + e.getMessage());
 		}
 		return c;
 	}
@@ -150,9 +150,15 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Erro ao listar clientes!!!/n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, "Erro ao listar clientes!!!/n" + e.getMessage());
 		}
 		return null;
+	}
+
+	
+	public Connection getConexao() {
+		return conexao;
+
 	}
 
 }
