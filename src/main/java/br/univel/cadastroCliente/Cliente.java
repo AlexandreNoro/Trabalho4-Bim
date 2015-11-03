@@ -12,6 +12,7 @@ public class Cliente {
 	private Genero genero;
 	private String email;
 
+	//Getters e Setters dos atributos
 	public int getId() {
 		return id;
 	}
@@ -76,6 +77,7 @@ public class Cliente {
 		this.genero = genero;
 	}
 
+	//Construtores da classe
 	public Cliente(int id, String nome, String endereco, String telefone, String cidade, Estado uf, Genero gn,
 			String email) {
 
@@ -94,7 +96,7 @@ public class Cliente {
 		super();
 		this.id = id;
 	}
-
+	
 	public String toString() {
 		return "Cliente[ " + this.nome + ", " + this.endereco + ", " + this.telefone + ", " + this.cidade + ", "
 				+ this.estado.getNome() + ", " + this.genero.getNome() + ", " + this.email + "] \n";

@@ -4,12 +4,14 @@ public enum Estado {
 
 	PR("Paraná"), SP("São Paulo"), SC("Santa Catarina"), RJ("Rio de Janeiro"), RS("Rio Grande do Sul");
 
+	//Variável que retorna o nome do estado de determinada sigla
 	private String nome;
 
+	//retorna o valor
 	public String getNome() {
 		return nome;
 	}
-
+	//Construtor da classe que recebe um tipo String
 	private Estado(String nome) {
 		this.nome = nome;
 	}
