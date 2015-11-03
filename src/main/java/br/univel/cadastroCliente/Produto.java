@@ -12,7 +12,7 @@ public class Produto {
 	private BigDecimal custo;
 	private BigDecimal margemlucro;
 
-	//Getters e Setters dos atributos
+	// Getters e Setters dos atributos
 	public int getIdcod() {
 		return idcod;
 	}
@@ -67,6 +67,30 @@ public class Produto {
 
 	public void setMargemlucro(BigDecimal margemlucro) {
 		this.margemlucro = margemlucro;
+	}
+
+	public Produto() {
+	}
+
+	public Produto(int cod, int codBarra, String categoria, String descricao, String unidade, BigDecimal custo,
+			BigDecimal margenLucro) {
+		this.idcod = cod;
+		this.codbarra = codBarra;
+		this.categoria = categoria;
+		this.descricao = descricao;
+		this.unidade = unidade;
+		this.custo = custo;
+		this.margemlucro = margenLucro;
+	}
+
+	public Produto(int codBarra, String categoria, String descricao, String unidade, BigDecimal custo,
+			BigDecimal margenLucro) {
+		this.codbarra = codBarra;
+		this.categoria = categoria;
+		this.descricao = descricao;
+		this.unidade = unidade;
+		this.custo = custo;
+		this.margemlucro = margenLucro;
 	}
 
 }
