@@ -13,11 +13,11 @@ public class Produto {
 	private BigDecimal margemlucro;
 
 	//Getters e Setters dos atributos
-	public int getId() {
+	public int getIdcod() {
 		return idcod;
 	}
 
-	public void setId(int idcod) {
+	public void setIdcod(int idcod) {
 		this.idcod = idcod;
 	}
 

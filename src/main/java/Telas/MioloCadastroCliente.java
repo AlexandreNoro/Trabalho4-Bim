@@ -6,6 +6,10 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+
+import br.univel.cadastroCliente.Estado;
+import br.univel.cadastroCliente.Genero;
+
 import javax.swing.JComboBox;
 
 public class MioloCadastroCliente extends JPanel {
@@ -169,6 +173,14 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_cmbxGenero.gridy = 7;
 		add(cmbxGenero, gbc_cmbxGenero);
 
+	}
+	
+	public void mostraOpcaoEstados(){
+		for (Estado e : Estado.values()) {
+			cmbxEstado.addItem(e.name());
+		for (Genero g : Genero.values())
+			cmbxGenero.addItem(g.name());
+		}
 	}
 
 }
