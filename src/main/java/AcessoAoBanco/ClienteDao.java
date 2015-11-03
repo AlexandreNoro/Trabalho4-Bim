@@ -11,7 +11,7 @@ public interface ClienteDao {
 
 	public void atualizar(Cliente c);
 
-	public void excluir(Cliente c);
+	public void excluir(int id);
 
 	public Cliente buscar(int id);
 
