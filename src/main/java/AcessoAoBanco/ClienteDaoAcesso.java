@@ -25,16 +25,15 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement(
-					"INSERT INTO CLIENTE(ID,NOME,ENDERECO,TELEFONE,CIDADE,ESTADO,GENERO,EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+					"INSERT INTO CLIENTE(NOME,ENDERECO,TELEFONE,CIDADE,ESTADO,GENERO,EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-			ps.setInt(1, c.getId());
-			ps.setString(2, c.getNome());
-			ps.setString(3, c.getEndereco());
-			ps.setString(4, c.getTelefone());
-			ps.setString(5, c.getCidade());
-			ps.setObject(6, c.getEstado().getNome());
-			ps.setObject(7, c.getGenero().getNome());
-			ps.setString(8, c.getEmail());
+			ps.setString(1, c.getNome());
+			ps.setString(2, c.getEndereco());
+			ps.setString(3, c.getTelefone());
+			ps.setString(4, c.getCidade());
+			ps.setObject(5, c.getEstado().getNome());
+			ps.setObject(6, c.getGenero().getNome());
+			ps.setString(7, c.getEmail());
 
 			ps.executeUpdate();
 

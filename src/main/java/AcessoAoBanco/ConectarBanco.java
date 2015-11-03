@@ -19,10 +19,12 @@ public class ConectarBanco {
 	}
 
 	public Connection abreConexao() {
-		String url = "jdbc:h2://localhost/Alexandre";
+		String driverName = "com.mysql.jdbc.Driver";
+		String url = "jdbc:mysql://localhost/trabalhoFinal";
 		String user = "root";
 		String pass = "'142536'";
 		try {
+			Class.forName(driverName);
 			return conexao = DriverManager.getConnection(url, user, pass);
 		} catch (Exception e) {
 			e.printStackTrace();

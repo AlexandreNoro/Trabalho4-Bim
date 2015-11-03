@@ -5,13 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-
-import br.univel.cadastroCliente.Cliente;
-import br.univel.cadastroCliente.Estado;
-import br.univel.cadastroCliente.Genero;
 import br.univel.cadastroCliente.Produto;
 
 public class ProdutoDaoAcesso implements AcessoDao<Produto> {
@@ -120,7 +117,34 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 	@Override
 	public List<Produto> listar() {
 
+		Statement st = null;
+		ResultSet rs = null;
+		Produto p = null;
+
+		ArrayList<Produto> lista = new ArrayList<Produto>();
+
+		try {
+			st = conexao.createStatement();
+			rs = st.executeQuery(
+					"SELECT IDCOD_P, CODBARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGEMLUCRO " + "FROM PRODUTO");
+			while (rs.next()) {
+				lista.add(p = new Produto(rs.getInt("IDCOD_P"), rs.getInt("CODBARRA"), rs.getString("CATEGORIA"),
+						rs.getString("DESCRICAO"), rs.getString("UNIDADE"), rs.getBigDecimal("CUSTO"),
+						rs.getBigDecimal("MARGEMLUCRO")));
+			}
+			rs.close();
+			st.close();
+			if (lista != null)
+				return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
+	}
+
+	public Connection getConexao() {
+		return conexao;
+
 	}
 
 }

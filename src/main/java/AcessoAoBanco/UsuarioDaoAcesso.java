@@ -91,7 +91,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 		Usuario u = null;
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery("SELECT ID_C, CLIENTE, SENHA FROM USUARIO WHERE USER =" + user);
+			rs = st.executeQuery("SELECT IDCOD_C, CLIENTE, SENHA FROM USUARIO WHERE USER =" + user);
 			rs.next();
 			if (rs.getString("CLIENTE") != null) {
 				u = new Usuario();

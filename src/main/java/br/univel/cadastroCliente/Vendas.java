@@ -67,31 +67,49 @@ public class Vendas {
 	}
 
 	//Contrutores da classe venda
-	public Vendas(BigDecimal vlrtotal, BigDecimal troco, BigDecimal vlrPago, String cliente, String produto,
-			int idcod_venda, int idcod_compra, int idcod_preco, String datacompra, String horacompra) {
+	public Vendas() {
+	}
 
-		super();
-		this.vlrtotal = vlrtotal;
-		this.troco = troco;
-		this.vlrPago = vlrPago;
-		this.cliente = cliente;
-		this.produto = produto;
+	public Vendas(int idcod_venda, int idcod_c, int idcod_preco, String cliente,String produto,
+			BigDecimal vlrtotal, BigDecimal vlrPago, BigDecimal troco, String datacompra,
+			String horacompra) {
 		this.idcod_venda = idcod_venda;
 		this.idcod_c = idcod_c;
-		this.idcod_preco = idcod_preco;
+		this.cliente = cliente;
+		this.produto = produto;
+		this.vlrtotal = vlrtotal;
+		this.vlrPago = vlrPago;
+		this.troco = troco;
 		this.datacompra = datacompra;
 		this.horacompra = horacompra;
 	}
+	
+	public Vendas(int idcod_c, int idcod_preco, String cliente,String produto,
+			BigDecimal vlrtotal, BigDecimal vlrPago, BigDecimal troco, String datacompra,
+			String horacompra) {
+		this.idcod_c = idcod_c;
+		this.idcod_preco = idcod_preco;
+		this.cliente = cliente;
+		this.produto = produto;
+		this.vlrtotal = vlrtotal;
+		this.vlrPago = vlrPago;
+		this.troco = troco;
+		this.datacompra = datacompra;
+		this.horacompra = horacompra;
 
-	public Vendas(int idcod_venda) {
-		super();
-		this.idcod_venda = idcod_venda;
 	}
 
-	public String toString() {
-		return "Vendas[ " + this.vlrtotal + ", " + this.troco + ", " + this.vlrPago + ", " + this.cliente + ", "
-				+ this.produto + ", " + this.idcod_venda + ", " + this.idcod_c + ", " + this.idcod_preco + ","
-				+ this.datacompra + ", " + this.horacompra + "] \n";
+	public Vendas(int idcod_venda, String cliente, String produto,
+			BigDecimal vlrtotal, BigDecimal vlrPago,
+			BigDecimal troco, String datacompra, String horacompra) {
+		this.idcod_venda = idcod_venda;
+		this.cliente = cliente;
+		this.produto = produto;
+		this.vlrtotal = vlrtotal;
+		this.vlrPago = vlrPago;
+		this.troco = troco;
+		this.datacompra = datacompra;
+		this.horacompra = horacompra;
 	}
 
 }
