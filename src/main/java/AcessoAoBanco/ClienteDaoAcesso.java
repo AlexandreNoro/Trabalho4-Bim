@@ -14,7 +14,7 @@ import br.univel.cadastroCliente.Cliente;
 import br.univel.cadastroCliente.Estado;
 import br.univel.cadastroCliente.Genero;
 
-public class ClienteDaoAcesso implements ClienteDao {
+public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 
