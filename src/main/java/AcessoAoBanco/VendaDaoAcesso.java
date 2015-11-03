@@ -120,5 +120,10 @@ public class VendaDaoAcesso implements AcessoDao<Vendas> {
 		return null;
 
 	}
+	
+	public Connection getConexao() {
+		return conexao;
+
+	}
 
 }

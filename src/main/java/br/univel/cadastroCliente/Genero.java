@@ -15,18 +15,5 @@ public enum Genero {
 	private Genero(String nome) {
 		this.nome = nome;
 	}
-	
-	//Método que valida os generos
-	public Genero validar(Object obj) {
-		if (obj.toString().equals(M.nome))
-			return Genero.M;
-		else if (obj.toString().equals(F.nome))
-			return Genero.F;
-		else if (obj.toString().equals(G.nome))
-			return Genero.G;
-
-		return null;
-
-	}
 
 }
