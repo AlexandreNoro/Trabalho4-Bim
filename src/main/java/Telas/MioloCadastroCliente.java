@@ -219,7 +219,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_cmbxGenero.gridy = 7;
 		add(cmbxGenero, gbc_cmbxGenero);
 
-		JButton btnGravar = new JButton("Gravar");
+		btnGravar = new JButton("Gravar");
 		btnGravar.addActionListener(new ActionListener() {
 
 			@Override
@@ -236,7 +236,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_btnGravar.gridy = 8;
 		add(btnGravar, gbc_btnGravar);
 
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 
 			@Override
@@ -253,7 +253,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_btnEditar.gridy = 8;
 		add(btnEditar, gbc_btnEditar);
 
-		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 
 			@Override

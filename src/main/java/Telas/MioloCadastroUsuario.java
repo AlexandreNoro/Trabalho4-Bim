@@ -16,9 +16,7 @@ import java.util.List;
 import javax.swing.JTextField;
 
 import AcessoAoBanco.UsuarioDaoAcesso;
-import Tables.TabelaProduto;
 import Tables.TabelaUsuario;
-import br.univel.cadastroCliente.Produto;
 import br.univel.cadastroCliente.Usuario;
 
 import java.awt.Font;

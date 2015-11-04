@@ -12,14 +12,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 
 import AcessoAoBanco.ProdutoDaoAcesso;
-import Tables.TabelaCliente;
 import Tables.TabelaProduto;
 import br.univel.cadastroCliente.Produto;
-import br.univel.cadastroCliente.Cliente;
-import br.univel.cadastroCliente.Estado;
-import br.univel.cadastroCliente.Genero;
-import br.univel.cadastroCliente.Produto;
-
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
