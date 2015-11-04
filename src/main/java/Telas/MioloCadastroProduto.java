@@ -24,7 +24,6 @@ public class MioloCadastroProduto extends JPanel {
 	private JButton btnExcluir;
 	private JScrollPane scrollPane;
 	private JTable tablemioloproduto;
-
 	/**
 	 * Create the panel.
 	 */
@@ -172,8 +171,8 @@ public class MioloCadastroProduto extends JPanel {
 		btnGravar = new JButton("Gravar");
 		btnGravar.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_btnGravar = new GridBagConstraints();
-		gbc_btnGravar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGravar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnGravar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGravar.gridx = 2;
 		gbc_btnGravar.gridy = 7;
 		add(btnGravar, gbc_btnGravar);
@@ -190,6 +189,7 @@ public class MioloCadastroProduto extends JPanel {
 		btnExcluir = new JButton("Excluir");
 		btnExcluir.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_btnExcluir = new GridBagConstraints();
+		gbc_btnExcluir.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnExcluir.insets = new Insets(0, 0, 5, 0);
 		gbc_btnExcluir.gridx = 4;
 		gbc_btnExcluir.gridy = 7;

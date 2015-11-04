@@ -5,8 +5,16 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTextField;
 
+import AcessoAoBanco.ClienteDaoAcesso;
+import Tables.TabelaCliente;
+import br.univel.cadastroCliente.Cliente;
 import br.univel.cadastroCliente.Estado;
 import br.univel.cadastroCliente.Genero;
 
@@ -17,7 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class MioloCadastroCliente extends JPanel {
-	
+
 	protected JTextField txfId;
 	protected JTextField txfNome;
 	private JLabel lblTelefone;
@@ -37,18 +45,23 @@ public class MioloCadastroCliente extends JPanel {
 	private JButton btnExcluir;
 	private JScrollPane scrollPane;
 	private JTable tablemiolocliente;
-             
-	/**      
+
+	private TabelaCliente tabelacliente;
+	private ClienteDaoAcesso cda = new ClienteDaoAcesso();
+	private List<Cliente> listacliente = new ArrayList<>();
+	private int in = -1;
+
+	/**
 	 * Create the panel.
 	 */
 	public MioloCadastroCliente() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 200, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] { 0, 200, 0, 0, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gridBagLayout.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-		
+
 		JLabel lblId = new JLabel("Id");
 		lblId.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblId = new GridBagConstraints();
@@ -57,7 +70,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_lblId.gridx = 0;
 		gbc_lblId.gridy = 0;
 		add(lblId, gbc_lblId);
-		
+
 		txfId = new JTextField();
 		txfId.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txfId = new GridBagConstraints();
@@ -67,7 +80,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_txfId.gridy = 0;
 		add(txfId, gbc_txfId);
 		txfId.setColumns(10);
-		
+
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblNome = new GridBagConstraints();
@@ -76,7 +89,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_lblNome.gridx = 0;
 		gbc_lblNome.gridy = 1;
 		add(lblNome, gbc_lblNome);
-		
+
 		txfNome = new JTextField();
 		txfNome.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txfNome = new GridBagConstraints();
@@ -86,7 +99,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_txfNome.gridy = 1;
 		add(txfNome, gbc_txfNome);
 		txfNome.setColumns(10);
-		
+
 		lblTelefone = new JLabel("Telefone");
 		lblTelefone.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblTelefone = new GridBagConstraints();
@@ -95,7 +108,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_lblTelefone.gridx = 0;
 		gbc_lblTelefone.gridy = 2;
 		add(lblTelefone, gbc_lblTelefone);
-		
+
 		txftelefone = new JTextField();
 		txftelefone.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txftelefone = new GridBagConstraints();
@@ -105,7 +118,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_txftelefone.gridy = 2;
 		add(txftelefone, gbc_txftelefone);
 		txftelefone.setColumns(10);
-		
+
 		lblEndereco = new JLabel("Endereco");
 		lblEndereco.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblEndereco = new GridBagConstraints();
@@ -114,7 +127,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_lblEndereco.gridx = 0;
 		gbc_lblEndereco.gridy = 3;
 		add(lblEndereco, gbc_lblEndereco);
-		
+
 		txfendereco = new JTextField();
 		txfendereco.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txfendereco = new GridBagConstraints();
@@ -124,7 +137,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_txfendereco.gridy = 3;
 		add(txfendereco, gbc_txfendereco);
 		txfendereco.setColumns(10);
-		
+
 		lblCidade = new JLabel("Cidade");
 		lblCidade.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblCidade = new GridBagConstraints();
@@ -133,7 +146,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_lblCidade.gridx = 0;
 		gbc_lblCidade.gridy = 4;
 		add(lblCidade, gbc_lblCidade);
-		
+
 		txfcidade = new JTextField();
 		txfcidade.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txfcidade = new GridBagConstraints();
@@ -143,7 +156,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_txfcidade.gridy = 4;
 		add(txfcidade, gbc_txfcidade);
 		txfcidade.setColumns(10);
-		
+
 		lblEstado = new JLabel("Estado");
 		lblEstado.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblEstado = new GridBagConstraints();
@@ -152,7 +165,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_lblEstado.gridx = 0;
 		gbc_lblEstado.gridy = 5;
 		add(lblEstado, gbc_lblEstado);
-		
+
 		cmbxEstado = new JComboBox();
 		cmbxEstado.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_cmbxEstado = new GridBagConstraints();
@@ -161,7 +174,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_cmbxEstado.gridx = 1;
 		gbc_cmbxEstado.gridy = 5;
 		add(cmbxEstado, gbc_cmbxEstado);
-		
+
 		lblEmail = new JLabel("Email");
 		lblEmail.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
@@ -170,7 +183,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_lblEmail.gridx = 0;
 		gbc_lblEmail.gridy = 6;
 		add(lblEmail, gbc_lblEmail);
-		
+
 		txfEmail = new JTextField();
 		txfEmail.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txfEmail = new GridBagConstraints();
@@ -180,7 +193,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_txfEmail.gridy = 6;
 		add(txfEmail, gbc_txfEmail);
 		txfEmail.setColumns(10);
-		
+
 		lblGenero = new JLabel("Genero");
 		lblGenero.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblGenero = new GridBagConstraints();
@@ -189,7 +202,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_lblGenero.gridx = 0;
 		gbc_lblGenero.gridy = 7;
 		add(lblGenero, gbc_lblGenero);
-		
+
 		cmbxGenero = new JComboBox();
 		cmbxGenero.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_cmbxGenero = new GridBagConstraints();
@@ -198,8 +211,16 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_cmbxGenero.gridx = 1;
 		gbc_cmbxGenero.gridy = 7;
 		add(cmbxGenero, gbc_cmbxGenero);
-		
-		btnGravar = new JButton("Gravar");
+
+		JButton btnGravar = new JButton("Gravar");
+		btnGravar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Gravar();
+
+			}
+		});
 		btnGravar.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_btnGravar = new GridBagConstraints();
 		gbc_btnGravar.insets = new Insets(0, 0, 5, 5);
@@ -207,8 +228,16 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_btnGravar.gridx = 2;
 		gbc_btnGravar.gridy = 8;
 		add(btnGravar, gbc_btnGravar);
-		
-		btnEditar = new JButton("Editar");
+
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Editar();
+
+			}
+		});
 		btnEditar.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_btnEditar = new GridBagConstraints();
 		gbc_btnEditar.insets = new Insets(0, 0, 5, 5);
@@ -216,15 +245,24 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_btnEditar.gridx = 3;
 		gbc_btnEditar.gridy = 8;
 		add(btnEditar, gbc_btnEditar);
-		
-		btnExcluir = new JButton("Excluir");
+
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Excluir();
+
+			}
+		});
 		btnExcluir.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_btnExcluir = new GridBagConstraints();
+		gbc_btnExcluir.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnExcluir.insets = new Insets(0, 0, 5, 0);
 		gbc_btnExcluir.gridx = 4;
 		gbc_btnExcluir.gridy = 8;
 		add(btnExcluir, gbc_btnExcluir);
-		
+
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 5;
@@ -233,19 +271,60 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 9;
 		add(scrollPane, gbc_scrollPane);
-		
+
 		tablemiolocliente = new JTable();
 		tablemiolocliente.setFont(new Font("Consolas", Font.BOLD, 11));
 		scrollPane.setViewportView(tablemiolocliente);
 
+		mostrarNoComboBox();
+
+		cda.getConexao();
+
+		listarClientes();
+
 	}
-	
-	public void mostraOpcaoEstados(){
-		for (Estado e : Estado.values()) {
+
+	private void listarClientes() {
+		new Thread(new Runnable() {
+
+			public void run() {
+				tabelacliente = new TabelaCliente();
+				listacliente = tabelacliente.listar();
+				tablemiolocliente.setModel(tabelacliente);
+			}
+		}).start();
+
+	}
+
+	private void mostrarNoComboBox() {
+		for (Estado e : Estado.values())
 			cmbxEstado.addItem(e.name());
 		for (Genero g : Genero.values())
 			cmbxGenero.addItem(g.name());
-		}
+	}
+
+	protected void Gravar() {
+
+		Cliente c = new Cliente(txfNome.getText(), txftelefone.getText(), txfendereco.getText(), txfcidade.getText(),
+				Estado.valueOf(String.valueOf(cmbxEstado.getSelectedItem())), txfEmail.getText(),
+				Genero.valueOf(String.valueOf(cmbxGenero.getSelectedItem())));
+
+		cda.inserir(c);
+		listacliente = cda.listar();
+		tabelacliente.addLista(listacliente);
+		limpar();
+	}
+
+	protected void Editar() {
+
+	}
+
+	protected void Excluir() {
+
+	}
+
+	private void limpar() {
+
 	}
 
 }

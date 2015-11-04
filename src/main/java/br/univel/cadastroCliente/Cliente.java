@@ -77,9 +77,6 @@ public class Cliente {
 	}
 
 	// Construtores da classe
-	public Cliente() {
-	}
-
 	public Cliente(int id, String nome, String telefone, String endereco, String cidade, Estado estado, String email,
 			Genero genero) {
 		this.id = id;

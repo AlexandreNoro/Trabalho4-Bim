@@ -19,6 +19,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class PainelLogin extends JPanel {
 	
@@ -38,6 +39,7 @@ public class PainelLogin extends JPanel {
 		setLayout(gridBagLayout);
 
 		JLabel lblUsurio = new JLabel("Usuário");
+		lblUsurio.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
 		GridBagConstraints gbc_lblUsurio = new GridBagConstraints();
 		gbc_lblUsurio.insets = new Insets(20, 20, 5, 5);
 		gbc_lblUsurio.anchor = GridBagConstraints.EAST;
@@ -46,6 +48,7 @@ public class PainelLogin extends JPanel {
 		add(lblUsurio, gbc_lblUsurio);
 
 		textField = new JTextField();
+		textField.setFont(new Font("Arial Narrow", Font.BOLD, 14));
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(20, 0, 5, 20);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -55,6 +58,7 @@ public class PainelLogin extends JPanel {
 		textField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Senha");
+		lblNewLabel.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel.insets = new Insets(0, 20, 20, 5);
@@ -63,6 +67,7 @@ public class PainelLogin extends JPanel {
 		add(lblNewLabel, gbc_lblNewLabel);
 
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Arial Narrow", Font.BOLD, 14));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 0, 20, 20);
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
@@ -71,6 +76,7 @@ public class PainelLogin extends JPanel {
 		add(passwordField, gbc_passwordField);
 
 		btnEntrar = new JButton("Entrar");
+		btnEntrar.setFont(new Font("Courier New", Font.BOLD, 14));
 		GridBagConstraints gbc_btnEntrar = new GridBagConstraints();
 		gbc_btnEntrar.insets = new Insets(0, 0, 20, 0);
 		gbc_btnEntrar.gridx = 1;

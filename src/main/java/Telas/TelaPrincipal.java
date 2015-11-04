@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.function.Function;
 import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
 
 public class TelaPrincipal extends JFrame {
 
@@ -44,6 +46,7 @@ public class TelaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrincipal() {
+		setExtendedState(Frame.MAXIMIZED_BOTH);
 
 		blockParaLogin();
 
@@ -54,9 +57,12 @@ public class TelaPrincipal extends JFrame {
 		setJMenuBar(menuBar);
 
 		JMenu mnCadastros = new JMenu("Cadastros");
+		mnCadastros.setForeground(new Color(0, 0, 102));
+		mnCadastros.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 14));
 		menuBar.add(mnCadastros);
 
 		JMenuItem mntmCliente = new JMenuItem("Cliente");
+		mntmCliente.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
 		mntmCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				abrirTela();
@@ -64,25 +70,29 @@ public class TelaPrincipal extends JFrame {
 
 		});
 		mnCadastros.add(mntmCliente);
-		
+
 		JMenuItem mntmBloquear = new JMenuItem("Bloquear");
+		mntmBloquear.setForeground(new Color(204, 0, 0));
+		mntmBloquear.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
 		mntmBloquear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				block();
 			}
 		});
-		
+
 		JMenuItem mntmUsuario = new JMenuItem("Usuario");
+		mntmUsuario.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
 		mntmUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				abrirTelaUsuario();
 			}
 
 		});
-		
+
 		mnCadastros.add(mntmUsuario);
-		
+
 		JMenuItem mntmProduto = new JMenuItem("Produto");
+		mntmProduto.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
 		mntmProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				abrirTelaProduto();
@@ -90,34 +100,67 @@ public class TelaPrincipal extends JFrame {
 
 		});
 		mnCadastros.add(mntmProduto);
-		
+
 		JMenuItem mntmVendas = new JMenuItem("Vendas");
-		mntmVendas.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0){
+		mntmVendas.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
+		mntmVendas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				abrirTelaVendas();
 			}
 		});
 		mnCadastros.add(mntmVendas);
-		
-		
+
 		mnCadastros.add(mntmBloquear);
-		
+
 		JMenu mnRelatrios = new JMenu("Relat\u00F3rios");
+		mnRelatrios.setForeground(new Color(0, 0, 102));
+		mnRelatrios.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 14));
 		menuBar.add(mnRelatrios);
-		
+
 		JMenuItem mntmRelatrioCliente = new JMenuItem("Relat\u00F3rio Cliente");
+		mntmRelatrioCliente.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
+		mntmRelatrioCliente.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				abreRelatorioCliente();
+
+			}
+		});
 		mnRelatrios.add(mntmRelatrioCliente);
-		
+
 		JMenuItem mntmRelatrioProduto = new JMenuItem("Relat\u00F3rio Produto");
+		mntmRelatrioProduto.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
+		mntmRelatrioProduto.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				abreRelatorioProduto();
+
+			}
+		});
 		mnRelatrios.add(mntmRelatrioProduto);
-		
+
 		JMenuItem mntmRelatrioVenda = new JMenuItem("Relat\u00F3rio Venda");
+		mntmRelatrioVenda.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
+		mntmRelatrioVenda.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				abreRelatorioVendas();
+				
+			}
+		});
 		mnRelatrios.add(mntmRelatrioVenda);
-		
+
 		JMenu mnSistema = new JMenu("Sistema");
+		mnSistema.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 14));
+		mnSistema.setForeground(new Color(0, 0, 102));
 		menuBar.add(mnSistema);
-		
+
 		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair.setForeground(new Color(204, 0, 0));
+		mntmSair.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -131,22 +174,21 @@ public class TelaPrincipal extends JFrame {
 		setContentPane(contentPane);
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(new Color(255, 255, 255));
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
-
-	
 
 	
 
 	protected void block() {
 		setGlassPane(glass);
 		glass.setVisible(true);
-		
+
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				for (int i =0; i < 5; i++) {
+				for (int i = 0; i < 5; i++) {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
@@ -172,7 +214,8 @@ public class TelaPrincipal extends JFrame {
 
 		glass.setVisible(true);
 	}
-	//Método para abrir a tela de cadastro de Clientes
+
+	// Método para abrir a tela de cadastro de Clientes
 	private void abrirTela() {
 		TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
 		ActionListener action = new ActionListener() {
@@ -183,10 +226,10 @@ public class TelaPrincipal extends JFrame {
 		};
 		telaCadastroCliente.setCloseAction(action);
 
-		tabbedPane.addTab("Cliente ", telaCadastroCliente);
+		tabbedPane.addTab("Cadastrar Cliente ", telaCadastroCliente);
 	}
-	
-	//Método para abrir a tela de cadastro de produtos
+
+	// Método para abrir a tela de cadastro de produtos
 	private void abrirTelaProduto() {
 		TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
 		ActionListener action = new ActionListener() {
@@ -197,10 +240,11 @@ public class TelaPrincipal extends JFrame {
 		};
 		telaCadastroProduto.setCloseAction(action);
 
-		tabbedPane.addTab("Produto ", telaCadastroProduto);
-		
+		tabbedPane.addTab("Cadastrar Produto ", telaCadastroProduto);
+
 	}
-	//Método para abrir a tela de cadastro de Usuarios
+
+	// Método para abrir a tela de cadastro de Usuarios
 	protected void abrirTelaUsuario() {
 		TelaCadastroUsuario telaCadastroUsuario = new TelaCadastroUsuario();
 		ActionListener action = new ActionListener() {
@@ -211,10 +255,10 @@ public class TelaPrincipal extends JFrame {
 		};
 		telaCadastroUsuario.setCloseAction(action);
 
-		tabbedPane.addTab("Usuário ", telaCadastroUsuario);
-		
+		tabbedPane.addTab("Cadastrar Usuário ", telaCadastroUsuario);
+
 	}
-	
+
 	protected void abrirTelaVendas() {
 		TelaCadastroVendas telaCadastroVendas = new TelaCadastroVendas();
 		ActionListener action = new ActionListener() {
@@ -225,9 +269,52 @@ public class TelaPrincipal extends JFrame {
 		};
 		telaCadastroVendas.setCloseAction(action);
 
-		tabbedPane.addTab("Vendas ", telaCadastroVendas);
-		
+		tabbedPane.addTab("Cadastrar Venda ", telaCadastroVendas);
+
+	}
+
+	protected void abreRelatorioCliente() {
+		TelaRelatorioCliente telaRelatorioCliente = new TelaRelatorioCliente();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaRelatorioCliente);
+			}
+		};
+		telaRelatorioCliente.setCloseAction(action);
+
+		tabbedPane.addTab("Relatório Cliente ", telaRelatorioCliente);
+
+	}
+
+	protected void abreRelatorioProduto() {
+		TelaRelatorioProduto telaRelatorioProduto = new TelaRelatorioProduto();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaRelatorioProduto);
+			}
+		};
+		telaRelatorioProduto.setCloseAction(action);
+
+		tabbedPane.addTab("Relatório Produto ", telaRelatorioProduto);
+
 	}
 	
+	
+	protected void abreRelatorioVendas() {
+		
+		TelaRelatorioVenda telaRelatorioVenda = new TelaRelatorioVenda();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaRelatorioVenda);
+			}
+		};
+		telaRelatorioVenda.setCloseAction(action);
+
+		tabbedPane.addTab("Relatório Vendas ", telaRelatorioVenda);
+		
+	}
 
 }

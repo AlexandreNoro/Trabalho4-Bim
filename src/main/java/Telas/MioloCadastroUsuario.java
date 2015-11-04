@@ -130,6 +130,7 @@ public class MioloCadastroUsuario extends JPanel {
 		btnDeletar = new JButton("Excluir");
 		btnDeletar.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_btnDeletar = new GridBagConstraints();
+		gbc_btnDeletar.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnDeletar.insets = new Insets(0, 0, 5, 0);
 		gbc_btnDeletar.gridx = 4;
 		gbc_btnDeletar.gridy = 4;

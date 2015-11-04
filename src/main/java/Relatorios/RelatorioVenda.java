@@ -30,7 +30,7 @@ public class RelatorioVenda extends JPanel {
 		JLabel lblDia = new JLabel("Dia: ");
 		lblDia.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblDia = new GridBagConstraints();
-		gbc_lblDia.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblDia.anchor = GridBagConstraints.EAST;
 		gbc_lblDia.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDia.gridx = 0;
 		gbc_lblDia.gridy = 0;
@@ -47,7 +47,7 @@ public class RelatorioVenda extends JPanel {
 		JLabel lblmes = new JLabel("M\u00EAs: ");
 		lblmes.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblmes = new GridBagConstraints();
-		gbc_lblmes.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblmes.anchor = GridBagConstraints.EAST;
 		gbc_lblmes.insets = new Insets(0, 0, 5, 5);
 		gbc_lblmes.gridx = 3;
 		gbc_lblmes.gridy = 0;
@@ -64,7 +64,7 @@ public class RelatorioVenda extends JPanel {
 		JLabel lblctgproduto = new JLabel("Categoria do Produto: ");
 		lblctgproduto.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblctgproduto = new GridBagConstraints();
-		gbc_lblctgproduto.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblctgproduto.anchor = GridBagConstraints.EAST;
 		gbc_lblctgproduto.insets = new Insets(0, 0, 5, 5);
 		gbc_lblctgproduto.gridx = 5;
 		gbc_lblctgproduto.gridy = 0;
