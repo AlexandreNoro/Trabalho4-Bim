@@ -1,12 +1,18 @@
 package Telas;
 
+/**
+ * @author Alexandre Henrique Noro 4 de nov de 2015 - 19:03:46
+ */
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +29,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.MouseEvent;
 
 public class MioloCadastroCliente extends JPanel {
 
@@ -273,12 +280,28 @@ public class MioloCadastroCliente extends JPanel {
 		add(scrollPane, gbc_scrollPane);
 
 		tablemiolocliente = new JTable();
+		
+		tablemiolocliente.addMouseListener(new MouseAdapter() {
+			
+			
+			@Override
+			public void mouseClicked(MouseEvent me) {
+				if (me.getClickCount() == 2) {
+						Cliente c = (Cliente) listacliente.get(tablemiolocliente.getSelectedRow());
+						
+						retornaCliente(c);
+						
+						in = tablemiolocliente.getSelectedRow();
+				}
+			}
+		});
+		
+		
+		
 		tablemiolocliente.setFont(new Font("Consolas", Font.BOLD, 11));
 		scrollPane.setViewportView(tablemiolocliente);
 
 		mostrarNoComboBox();
-
-		cda.getConexao();
 
 		listarClientes();
 
@@ -317,14 +340,54 @@ public class MioloCadastroCliente extends JPanel {
 
 	protected void Editar() {
 
+		if (in > -1) {
+			Cliente c = new Cliente(Integer.parseInt(txfId.getText()), txfNome.getText(), txftelefone.getText(),
+					txfendereco.getText(), txfcidade.getText(),
+					Estado.valueOf(String.valueOf(cmbxEstado.getSelectedItem())), txfEmail.getText(),
+					Genero.valueOf(String.valueOf(cmbxGenero.getSelectedItem())));
+
+			cda.atualizar(c);
+			tabelacliente.atualizaLista(in, c);
+			limpar();
+			in = -1;
+		} else {
+			JOptionPane.showMessageDialog(null, "Escolha o cliente que deseja modificar!!!");
+		}
+
 	}
 
 	protected void Excluir() {
+
+		cda.excluir(listacliente.get(tablemiolocliente.getSelectedRow()).getId());
+		tabelacliente.excluir(tablemiolocliente.getSelectedRow());
 
 	}
 
 	private void limpar() {
 
+		txfId.setText("");
+		txfNome.setText("");
+		txftelefone.setText("");
+		txfendereco.setText("");
+		txfcidade.setText("");
+		cmbxEstado.setSelectedIndex(0);
+		txfEmail.setText("");
+		cmbxGenero.setSelectedIndex(0);
+		
+
 	}
+	
+	public void retornaCliente(Cliente c){
+		txfId.setText(String.valueOf(c.getId()));
+		txfNome.setText(c.getNome());
+		txftelefone.setText(c.getTelefone());
+		txfendereco.setText(c.getEndereco());
+		txfcidade.setText(c.getCidade());
+		cmbxEstado.setSelectedItem(c.getEstado().name());
+		txfEmail.setText(c.getEmail());
+		cmbxGenero.setSelectedItem(c.getGenero().name());
+		
+	}
+	
 
 }
