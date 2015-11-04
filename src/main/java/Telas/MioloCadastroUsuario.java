@@ -145,7 +145,7 @@ public class MioloCadastroUsuario extends JPanel {
 		add(scrollPane, gbc_scrollPane);
 		
 		tablemiolousuario = new JTable();
-		tablemiolousuario.setFont(new Font("Arial Narrow", Font.BOLD, 11));
+		tablemiolousuario.setFont(new Font("Consolas", Font.BOLD, 11));
 		scrollPane.setViewportView(tablemiolousuario);
 
 	}

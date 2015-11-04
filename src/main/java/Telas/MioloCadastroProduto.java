@@ -6,6 +6,10 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class MioloCadastroProduto extends JPanel {
 	private JTextField txfId;
@@ -15,19 +19,25 @@ public class MioloCadastroProduto extends JPanel {
 	private JTextField txfUnidade;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JButton btnGravar;
+	private JButton btnEditar;
+	private JButton btnExcluir;
+	private JScrollPane scrollPane;
+	private JTable tablemioloproduto;
 
 	/**
 	 * Create the panel.
 	 */
 	public MioloCadastroProduto() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{0, 150, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblId = new JLabel("Id");
+		lblId.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblId = new GridBagConstraints();
 		gbc_lblId.anchor = GridBagConstraints.EAST;
 		gbc_lblId.insets = new Insets(0, 0, 5, 5);
@@ -36,8 +46,9 @@ public class MioloCadastroProduto extends JPanel {
 		add(lblId, gbc_lblId);
 		
 		txfId = new JTextField();
+		txfId.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txfId = new GridBagConstraints();
-		gbc_txfId.insets = new Insets(0, 0, 5, 0);
+		gbc_txfId.insets = new Insets(0, 0, 5, 5);
 		gbc_txfId.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txfId.gridx = 1;
 		gbc_txfId.gridy = 0;
@@ -45,6 +56,7 @@ public class MioloCadastroProduto extends JPanel {
 		txfId.setColumns(10);
 		
 		JLabel lblCodigo = new JLabel("C\u00F3digo");
+		lblCodigo.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblCodigo = new GridBagConstraints();
 		gbc_lblCodigo.anchor = GridBagConstraints.EAST;
 		gbc_lblCodigo.insets = new Insets(0, 0, 5, 5);
@@ -53,8 +65,9 @@ public class MioloCadastroProduto extends JPanel {
 		add(lblCodigo, gbc_lblCodigo);
 		
 		txfCodigo = new JTextField();
+		txfCodigo.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txfCodigo = new GridBagConstraints();
-		gbc_txfCodigo.insets = new Insets(0, 0, 5, 0);
+		gbc_txfCodigo.insets = new Insets(0, 0, 5, 5);
 		gbc_txfCodigo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txfCodigo.gridx = 1;
 		gbc_txfCodigo.gridy = 1;
@@ -62,6 +75,7 @@ public class MioloCadastroProduto extends JPanel {
 		txfCodigo.setColumns(10);
 		
 		JLabel lblCategoria = new JLabel("Categoria");
+		lblCategoria.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblCategoria = new GridBagConstraints();
 		gbc_lblCategoria.anchor = GridBagConstraints.EAST;
 		gbc_lblCategoria.insets = new Insets(0, 0, 5, 5);
@@ -70,8 +84,9 @@ public class MioloCadastroProduto extends JPanel {
 		add(lblCategoria, gbc_lblCategoria);
 		
 		txfCategoria = new JTextField();
+		txfCategoria.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txfCategoria = new GridBagConstraints();
-		gbc_txfCategoria.insets = new Insets(0, 0, 5, 0);
+		gbc_txfCategoria.insets = new Insets(0, 0, 5, 5);
 		gbc_txfCategoria.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txfCategoria.gridx = 1;
 		gbc_txfCategoria.gridy = 2;
@@ -79,6 +94,7 @@ public class MioloCadastroProduto extends JPanel {
 		txfCategoria.setColumns(10);
 		
 		JLabel lblDescricao = new JLabel("Descricao");
+		lblDescricao.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblDescricao = new GridBagConstraints();
 		gbc_lblDescricao.anchor = GridBagConstraints.EAST;
 		gbc_lblDescricao.insets = new Insets(0, 0, 5, 5);
@@ -87,8 +103,9 @@ public class MioloCadastroProduto extends JPanel {
 		add(lblDescricao, gbc_lblDescricao);
 		
 		txfDescricao = new JTextField();
+		txfDescricao.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txfDescricao = new GridBagConstraints();
-		gbc_txfDescricao.insets = new Insets(0, 0, 5, 0);
+		gbc_txfDescricao.insets = new Insets(0, 0, 5, 5);
 		gbc_txfDescricao.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txfDescricao.gridx = 1;
 		gbc_txfDescricao.gridy = 3;
@@ -96,6 +113,7 @@ public class MioloCadastroProduto extends JPanel {
 		txfDescricao.setColumns(10);
 		
 		JLabel lblUnidade = new JLabel("Unidade");
+		lblUnidade.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblUnidade = new GridBagConstraints();
 		gbc_lblUnidade.anchor = GridBagConstraints.EAST;
 		gbc_lblUnidade.insets = new Insets(0, 0, 5, 5);
@@ -104,8 +122,9 @@ public class MioloCadastroProduto extends JPanel {
 		add(lblUnidade, gbc_lblUnidade);
 		
 		txfUnidade = new JTextField();
+		txfUnidade.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_txfUnidade = new GridBagConstraints();
-		gbc_txfUnidade.insets = new Insets(0, 0, 5, 0);
+		gbc_txfUnidade.insets = new Insets(0, 0, 5, 5);
 		gbc_txfUnidade.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txfUnidade.gridx = 1;
 		gbc_txfUnidade.gridy = 4;
@@ -113,6 +132,7 @@ public class MioloCadastroProduto extends JPanel {
 		txfUnidade.setColumns(10);
 		
 		JLabel lblCusto = new JLabel("Custo");
+		lblCusto.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblCusto = new GridBagConstraints();
 		gbc_lblCusto.anchor = GridBagConstraints.EAST;
 		gbc_lblCusto.insets = new Insets(0, 0, 5, 5);
@@ -121,8 +141,9 @@ public class MioloCadastroProduto extends JPanel {
 		add(lblCusto, gbc_lblCusto);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 1;
 		gbc_textField.gridy = 5;
@@ -130,20 +151,62 @@ public class MioloCadastroProduto extends JPanel {
 		textField.setColumns(10);
 		
 		JLabel lblMlucro = new JLabel("Lucro");
+		lblMlucro.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblMlucro = new GridBagConstraints();
 		gbc_lblMlucro.anchor = GridBagConstraints.EAST;
-		gbc_lblMlucro.insets = new Insets(0, 0, 0, 5);
+		gbc_lblMlucro.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMlucro.gridx = 0;
 		gbc_lblMlucro.gridy = 6;
 		add(lblMlucro, gbc_lblMlucro);
 		
 		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 1;
 		gbc_textField_1.gridy = 6;
 		add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
+		
+		btnGravar = new JButton("Gravar");
+		btnGravar.setFont(new Font("Arial Narrow", Font.BOLD, 11));
+		GridBagConstraints gbc_btnGravar = new GridBagConstraints();
+		gbc_btnGravar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGravar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnGravar.gridx = 2;
+		gbc_btnGravar.gridy = 7;
+		add(btnGravar, gbc_btnGravar);
+		
+		btnEditar = new JButton("Editar");
+		btnEditar.setFont(new Font("Arial Narrow", Font.BOLD, 11));
+		GridBagConstraints gbc_btnEditar = new GridBagConstraints();
+		gbc_btnEditar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnEditar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnEditar.gridx = 3;
+		gbc_btnEditar.gridy = 7;
+		add(btnEditar, gbc_btnEditar);
+		
+		btnExcluir = new JButton("Excluir");
+		btnExcluir.setFont(new Font("Arial Narrow", Font.BOLD, 11));
+		GridBagConstraints gbc_btnExcluir = new GridBagConstraints();
+		gbc_btnExcluir.insets = new Insets(0, 0, 5, 0);
+		gbc_btnExcluir.gridx = 4;
+		gbc_btnExcluir.gridy = 7;
+		add(btnExcluir, gbc_btnExcluir);
+		
+		scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 5;
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 8;
+		add(scrollPane, gbc_scrollPane);
+		
+		tablemioloproduto = new JTable();
+		tablemioloproduto.setFont(new Font("Consolas", Font.BOLD, 11));
+		scrollPane.setViewportView(tablemioloproduto);
 
 	}
 
