@@ -91,8 +91,28 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnCadastros.add(mntmProduto);
 		
+		JMenuItem mntmVendas = new JMenuItem("Vendas");
+		mntmVendas.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				abrirTelaVendas();
+			}
+		});
+		mnCadastros.add(mntmVendas);
+		
 		
 		mnCadastros.add(mntmBloquear);
+		
+		JMenu mnRelatrios = new JMenu("Relat\u00F3rios");
+		menuBar.add(mnRelatrios);
+		
+		JMenuItem mntmRelatrioCliente = new JMenuItem("Relat\u00F3rio Cliente");
+		mnRelatrios.add(mntmRelatrioCliente);
+		
+		JMenuItem mntmRelatrioProduto = new JMenuItem("Relat\u00F3rio Produto");
+		mnRelatrios.add(mntmRelatrioProduto);
+		
+		JMenuItem mntmRelatrioVenda = new JMenuItem("Relat\u00F3rio Venda");
+		mnRelatrios.add(mntmRelatrioVenda);
 		
 		JMenu mnSistema = new JMenu("Sistema");
 		menuBar.add(mnSistema);
@@ -113,6 +133,8 @@ public class TelaPrincipal extends JFrame {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
+
+	
 
 	
 
@@ -190,6 +212,20 @@ public class TelaPrincipal extends JFrame {
 		telaCadastroUsuario.setCloseAction(action);
 
 		tabbedPane.addTab("Usuário ", telaCadastroUsuario);
+		
+	}
+	
+	protected void abrirTelaVendas() {
+		TelaCadastroVendas telaCadastroVendas = new TelaCadastroVendas();
+		ActionListener action = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.remove(telaCadastroVendas);
+			}
+		};
+		telaCadastroVendas.setCloseAction(action);
+
+		tabbedPane.addTab("Vendas ", telaCadastroVendas);
 		
 	}
 	

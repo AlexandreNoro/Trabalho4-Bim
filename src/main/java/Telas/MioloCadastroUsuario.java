@@ -10,7 +10,8 @@ import javax.swing.JTextField;
 public class MioloCadastroUsuario extends JPanel {
 	private JTextField txfId;
 	private JTextField txfIdcliente;
-	private JTextField txfSenha;
+	private JTextField txf_cliente;
+	private JTextField txf_senha;
 
 	/**
 	 * Create the panel.
@@ -18,9 +19,9 @@ public class MioloCadastroUsuario extends JPanel {
 	public MioloCadastroUsuario() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblId = new JLabel("Id");
@@ -57,21 +58,38 @@ public class MioloCadastroUsuario extends JPanel {
 		add(txfIdcliente, gbc_txfIdcliente);
 		txfIdcliente.setColumns(10);
 		
-		JLabel lblSenha = new JLabel("Senha");
-		GridBagConstraints gbc_lblSenha = new GridBagConstraints();
-		gbc_lblSenha.anchor = GridBagConstraints.EAST;
-		gbc_lblSenha.insets = new Insets(0, 0, 0, 5);
-		gbc_lblSenha.gridx = 0;
-		gbc_lblSenha.gridy = 2;
-		add(lblSenha, gbc_lblSenha);
+		JLabel lbl_cliente = new JLabel("Cliente");
+		GridBagConstraints gbc_lbl_cliente = new GridBagConstraints();
+		gbc_lbl_cliente.anchor = GridBagConstraints.EAST;
+		gbc_lbl_cliente.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl_cliente.gridx = 0;
+		gbc_lbl_cliente.gridy = 2;
+		add(lbl_cliente, gbc_lbl_cliente);
 		
-		txfSenha = new JTextField();
-		GridBagConstraints gbc_txfSenha = new GridBagConstraints();
-		gbc_txfSenha.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txfSenha.gridx = 1;
-		gbc_txfSenha.gridy = 2;
-		add(txfSenha, gbc_txfSenha);
-		txfSenha.setColumns(10);
+		txf_cliente = new JTextField();
+		GridBagConstraints gbc_txf_cliente = new GridBagConstraints();
+		gbc_txf_cliente.insets = new Insets(0, 0, 5, 0);
+		gbc_txf_cliente.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txf_cliente.gridx = 1;
+		gbc_txf_cliente.gridy = 2;
+		add(txf_cliente, gbc_txf_cliente);
+		txf_cliente.setColumns(10);
+		
+		JLabel lbl_senha = new JLabel("Senha");
+		GridBagConstraints gbc_lbl_senha = new GridBagConstraints();
+		gbc_lbl_senha.anchor = GridBagConstraints.EAST;
+		gbc_lbl_senha.insets = new Insets(0, 0, 0, 5);
+		gbc_lbl_senha.gridx = 0;
+		gbc_lbl_senha.gridy = 3;
+		add(lbl_senha, gbc_lbl_senha);
+		
+		txf_senha = new JTextField();
+		GridBagConstraints gbc_txf_senha = new GridBagConstraints();
+		gbc_txf_senha.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txf_senha.gridx = 1;
+		gbc_txf_senha.gridy = 3;
+		add(txf_senha, gbc_txf_senha);
+		txf_senha.setColumns(10);
 
 	}
 
