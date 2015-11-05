@@ -13,7 +13,7 @@ public class Vendas {
 	private String produto;
 	private int idcod_venda;
 	private int idcod_c;
-	private int idcod_preco;
+	private int cod_p;
 	private String datacompra;
 	private String horacompra;
 
@@ -52,8 +52,8 @@ public class Vendas {
 		return idcod_c;
 	}
 
-	public int getIdcod_preco() {
-		return idcod_preco;
+	public int getcod_p() {
+		return cod_p;
 	}
 
 
@@ -84,11 +84,11 @@ public class Vendas {
 		this.horacompra = horacompra;
 	}
 	
-	public Vendas(int idcod_c, int idcod_preco, String cliente,String produto,
+	public Vendas(int idcod_c, int cod_p, String cliente,String produto,
 			BigDecimal vlrtotal, BigDecimal vlrPago, BigDecimal troco, String datacompra,
 			String horacompra) {
 		this.idcod_c = idcod_c;
-		this.idcod_preco = idcod_preco;
+		this.cod_p = cod_p;
 		this.cliente = cliente;
 		this.produto = produto;
 		this.vlrtotal = vlrtotal;

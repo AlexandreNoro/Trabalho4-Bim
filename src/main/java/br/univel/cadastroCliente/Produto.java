@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Produto {
 
-	private int idcod;
+	private int cod_p;
 	private int codbarra;
 	private String categoria;
 	private String descricao;
@@ -13,12 +13,12 @@ public class Produto {
 	private BigDecimal margemlucro;
 
 	// Getters e Setters dos atributos
-	public int getIdcod() {
-		return idcod;
+	public int getcod_p() {
+		return cod_p;
 	}
 
-	public void setIdcod(int idcod) {
-		this.idcod = idcod;
+	public void setcod_p(int cod_p) {
+		this.cod_p = cod_p;
 	}
 
 	public int getCodbarra() {
@@ -72,9 +72,9 @@ public class Produto {
 	public Produto() {
 	}
 
-	public Produto(int cod, int codBarra, String categoria, String descricao, String unidade, BigDecimal custo,
+	public Produto(int cod_p, int codBarra, String categoria, String descricao, String unidade, BigDecimal custo,
 			BigDecimal margenLucro) {
-		this.idcod = cod;
+		this.cod_p = cod_p;
 		this.codbarra = codBarra;
 		this.categoria = categoria;
 		this.descricao = descricao;

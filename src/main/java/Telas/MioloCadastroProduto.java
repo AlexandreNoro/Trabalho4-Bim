@@ -330,7 +330,7 @@ public class MioloCadastroProduto extends JPanel {
 	}
 
 	public void retornaProduto(Produto p) {
-		txfId.setText(String.valueOf(p.getIdcod()));
+		txfId.setText(String.valueOf(p.getcod_p()));
 		txfCodigo.setText(String.valueOf(p.getCodbarra()));
 		txfCategoria.setText(p.getCategoria());
 		txfDescricao.setText(p.getDescricao());

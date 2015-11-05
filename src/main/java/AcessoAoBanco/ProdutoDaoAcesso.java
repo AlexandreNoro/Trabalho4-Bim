@@ -46,8 +46,8 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement(
-					"UPDATE PRODUTO SET CODBARRA = ?,CATEGORIA = ?,DESCRICAO = ?,UNIDADE = ?, CUSTO = ?, MARGEMLUCRO = ?  WHERE IDCOD_P ="
-							+ p.getIdcod());
+					"UPDATE PRODUTO SET CODBARRA = ?,CATEGORIA = ?,DESCRICAO = ?,UNIDADE = ?, CUSTO = ?, MARGEMLUCRO = ?  WHERE COD_P ="
+							+ p.getcod_p());
 
 			ps.setInt(1, p.getCodbarra());
 			ps.setString(2, p.getCategoria());
@@ -97,7 +97,7 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 		try {
 			st = conexao.createStatement();
 			rs = st.executeQuery(
-					"SELECT CODBARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGEMLUCRO FROM PRODUTO WHERE IDCOD_P ="
+					"SELECT CODBARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGEMLUCRO FROM PRODUTO WHERE COD_P ="
 							+ id_p);
 			rs.next();
 			if (rs.getString("NOME") != null) {
@@ -126,9 +126,9 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 		try {
 			st = conexao.createStatement();
 			rs = st.executeQuery(
-					"SELECT IDCOD_P, CODBARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGEMLUCRO " + "FROM PRODUTO");
+					"SELECT COD_P, CODBARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGEMLUCRO " + "FROM PRODUTO");
 			while (rs.next()) {
-				lista.add(p = new Produto(rs.getInt("IDCOD_P"), rs.getInt("CODBARRA"), rs.getString("CATEGORIA"),
+				lista.add(p = new Produto(rs.getInt("COD_P"), rs.getInt("CODBARRA"), rs.getString("CATEGORIA"),
 						rs.getString("DESCRICAO"), rs.getString("UNIDADE"), rs.getBigDecimal("CUSTO"),
 						rs.getBigDecimal("MARGEMLUCRO")));
 			}

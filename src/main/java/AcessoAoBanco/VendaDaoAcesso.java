@@ -20,11 +20,11 @@ public class VendaDaoAcesso implements AcessoDao<Vendas> {
 		PreparedStatement ps;
 
 		try {
-			ps = conexao.prepareStatement("INSERT INTO VENDA (IDCOD_C, CLIENTE, IDCOD_P,"
+			ps = conexao.prepareStatement("INSERT INTO VENDA (IDCOD_C, CLIENTE, COD_P,"
 					+ " PRODUTO, VLRTOTAL, VLRPAGO, TROCO, DATACOMPRA, HORACOMPRA) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, v.getIdcod_c());
 			ps.setString(2, v.getCliente());
-			ps.setInt(3, v.getIdcod_preco());
+			ps.setInt(3, v.getcod_p());
 			ps.setString(4, v.getProduto());
 			ps.setBigDecimal(5, v.getVlrtotal());
 			ps.setBigDecimal(6, v.getVlrPago());
@@ -74,11 +74,11 @@ public class VendaDaoAcesso implements AcessoDao<Vendas> {
 
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery("SELECT IDCOD_C, CLIENTE, IDCOD_P," + "PRODUTO, VLRTOTAL, VLRPAGO, TROCO, DATACOMPRA, HORACOMPRA"
+			rs = st.executeQuery("SELECT IDCOD_C, CLIENTE, COD_P," + "PRODUTO, VLRTOTAL, VLRPAGO, TROCO, DATACOMPRA, HORACOMPRA"
 					+ "FROM VENDA WHERE IDCOD_VENDA = " + idcod_v);
 			rs.next();
 			if (rs.getString("CLIENTE") != null) {
-				v = new Vendas(rs.getInt("IDCOD_C"), rs.getInt("IDCOD_P"), rs.getString("CLIENTE"),
+				v = new Vendas(rs.getInt("IDCOD_C"), rs.getInt("COD_P"), rs.getString("CLIENTE"),
 						rs.getString("PRODUTO"), rs.getBigDecimal("VLRTOTAL"), rs.getBigDecimal("VLRPAGO"),
 						rs.getBigDecimal("TROCO"), rs.getString("DATACOMPRA"), rs.getString("HORACOMPRA"));
 			}
@@ -103,10 +103,10 @@ public class VendaDaoAcesso implements AcessoDao<Vendas> {
 
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery("SELECT IDCOD_VENDA, IDCOD_C, CLIENTE, IDCOD_P,"
+			rs = st.executeQuery("SELECT IDCOD_VENDA, IDCOD_C, CLIENTE, COD_P,"
 					+ "PRODUTO, VLRTOTAL, VLRPAGO, TROCO, DATACOMPRA, HORACOMPRA FROM VENDA");
 			while (rs.next()) {
-				lista.add(v = new Vendas(rs.getInt("IDCOD_VENDAS"), rs.getInt("IDCOD_C"), rs.getInt("IDCOD_P"),
+				lista.add(v = new Vendas(rs.getInt("IDCOD_VENDAS"), rs.getInt("IDCOD_C"), rs.getInt("COD_P"),
 						rs.getString("CLIENTE"), rs.getString("PRODUTO"), rs.getBigDecimal("VLRTOTAL"),
 						rs.getBigDecimal("VLRPAGO"), rs.getBigDecimal("TROCO"), rs.getString("DATACOMPRA"),
 						rs.getString("HORACOMPRA")));

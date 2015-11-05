@@ -32,7 +32,7 @@ public class TabelaProduto extends AbstractTableModel {
 		Produto p = lista.get(linha);
 		switch (coluna) {
 		case 0:
-			return p.getIdcod();
+			return p.getcod_p();
 		case 1:
 			return p.getCodbarra();
 		case 2:
@@ -58,7 +58,7 @@ public class TabelaProduto extends AbstractTableModel {
 		switch (coluna) {
 
 		case 0:
-			return "CODIGO";
+			return "CODIGO PRODUTO";
 		case 1:
 			return "COD_BARRA";
 		case 2:

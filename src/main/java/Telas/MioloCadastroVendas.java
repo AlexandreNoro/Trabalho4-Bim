@@ -21,7 +21,6 @@ import javax.swing.JTextField;
 import AcessoAoBanco.ClienteDaoAcesso;
 import AcessoAoBanco.ProdutoDaoAcesso;
 import AcessoAoBanco.VendaDaoAcesso;
-import Tables.TabelaUsuario;
 import Tables.TabelaVendas;
 import br.univel.cadastroCliente.Cliente;
 import br.univel.cadastroCliente.Produto;
@@ -298,7 +297,7 @@ public class MioloCadastroVendas extends JPanel {
 
 	protected void Gravar() {
 		Vendas v = new Vendas(listacliente.get(cmbx_cliente.getSelectedIndex() - 1).getId(),
-				listaproduto.get(cmbx_produto.getSelectedIndex() - 1).getIdcod(),
+				listaproduto.get(cmbx_produto.getSelectedIndex() - 1).getcod_p(),
 				String.valueOf(cmbx_cliente.getSelectedItem()), String.valueOf(cmbx_produto.getSelectedItem()),
 				BigDecimal.valueOf(Double.valueOf(txf_vlrtotal.getText())),
 				BigDecimal.valueOf(Double.valueOf(txf_vlrpago.getText())),
@@ -317,7 +316,7 @@ public class MioloCadastroVendas extends JPanel {
 		if (in > -1) {
 			Vendas v = new Vendas(Integer.parseInt(txf_codvenda.getText()),
 					listacliente.get(cmbx_cliente.getSelectedIndex() - 1).getId(),
-					listaproduto.get(cmbx_produto.getSelectedIndex() - 1).getIdcod(),
+					listaproduto.get(cmbx_produto.getSelectedIndex() - 1).getcod_p(),
 					String.valueOf(cmbx_cliente.getSelectedItem()), String.valueOf(cmbx_produto.getSelectedItem()),
 					BigDecimal.valueOf(Double.valueOf(txf_vlrtotal.getText())),
 					BigDecimal.valueOf(Double.valueOf(txf_vlrpago.getText())),
