@@ -11,18 +11,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+
+import java.awt.Desktop;
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import Tables.TabelaCliente;
+import Tables.TabelaProduto;
 import br.univel.cadastroCliente.Cliente;
 import br.univel.cadastroCliente.Estado;
 import br.univel.cadastroCliente.Genero;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 
 public class RelatorioCliente extends JPanel {
 	private JTable tablecliente;
@@ -33,7 +45,7 @@ public class RelatorioCliente extends JPanel {
 	private String arq = "/////";
 	private List<Cliente> listacliente;
 	private TabelaCliente tabelaCliente;
-	private String comando = "SELECT IDCOD_C, NOME, TELEONE, ENDERECO, GENERO, EMAIL FROM CLIENTE";
+	private String comando = "SELECT IDCOD_C, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO FROM CLIENTE";
 
 	/**
 	 * Create the panel.
@@ -129,6 +141,14 @@ public class RelatorioCliente extends JPanel {
 		add(btnAtualizar, gbc_btnAtualizar);
 
 		JButton btnGerarPdf = new JButton("Gerar PDF");
+		btnGerarPdf.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				GerarPdf();
+
+			}
+		});
 		btnGerarPdf.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_btnGerarPdf = new GridBagConstraints();
 		gbc_btnGerarPdf.insets = new Insets(0, 0, 5, 0);
@@ -153,6 +173,51 @@ public class RelatorioCliente extends JPanel {
 		carregartabela();
 
 		mostradados();
+
+	}
+
+	protected void GerarPdf() {
+
+		TableModel tabelamodelo = getTabelaProduto();
+
+		JasperPrint jsp = null;
+
+		try {
+
+			Map<String, Object> mp = new HashMap<>();
+			mp.put("enderecop", "Avenida Curitiba, 681");
+			mp.put("telefonep", "(45)8817-9098");
+			jsp = JasperFillManager.fillReport(arq, mp, new JRTableModelDataSource(tabelamodelo));
+
+			JasperExportManager.exportReportToPdfFile(jsp,
+					"C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources" + ARQ_PDF);
+			Desktop.getDesktop()
+					.open(new File("C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources" + ARQ_PDF));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private TableModel getTabelaProduto() {
+
+		String[] columnNames = { "idcod_c", "nome", "telefone", "endereco", " cidade", "estado", "email", "genero" };
+
+		Object[][] dados = new Object[listacliente.size()][8];
+		for (int i = 0; i < listacliente.size(); i++) {
+			int x = 0;
+			dados[i][x++] = listacliente.get(i).getId();
+			dados[i][x++] = listacliente.get(i).getNome();
+			dados[i][x++] = listacliente.get(i).getTelefone();
+			dados[i][x++] = listacliente.get(i).getEndereco();
+			dados[i][x++] = listacliente.get(i).getCidade();
+			dados[i][x++] = listacliente.get(i).getEstado().getNome();
+			dados[i][x++] = listacliente.get(i).getEmail();
+			dados[i][x++] = listacliente.get(i).getGenero().getNome();
+		}
+
+		return new DefaultTableModel(dados, columnNames);
 
 	}
 
@@ -229,5 +294,7 @@ public class RelatorioCliente extends JPanel {
 		}
 
 	}
+	
+
 
 }
