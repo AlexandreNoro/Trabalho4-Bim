@@ -1,32 +1,53 @@
 package Relatorios;
 
+/**
+ * @author Alexandre Henrique Noro 6 de nov de 2015 - 21:33:48
+ */
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
+
+import Tables.TabelaProduto;
+import br.univel.cadastroCliente.Produto;
+
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.JComboBox;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class RelatorioProduto extends JPanel {
-	private JTextField textField;
+	private JTextField txf_mrglucro;
 	private JTable tableproduto;
+	private JComboBox<String> cmbx_catg;
+
+	private static String ARQ_PDF;
+	private String arq = "\\\\";
+	private List<Produto> listaproduto;
+	private TabelaProduto tabelaProduto;
 
 	/**
 	 * Create the panel.
 	 */
 	public RelatorioProduto() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 120, 80, 110, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] { 0, 120, 80, 110, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0 };
+		gridBagLayout.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-		
+
 		JLabel lblMargemDeLucro = new JLabel("Margem de Lucro:");
 		lblMargemDeLucro.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblMargemDeLucro = new GridBagConstraints();
@@ -35,16 +56,16 @@ public class RelatorioProduto extends JPanel {
 		gbc_lblMargemDeLucro.gridx = 0;
 		gbc_lblMargemDeLucro.gridy = 0;
 		add(lblMargemDeLucro, gbc_lblMargemDeLucro);
-		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 0;
-		add(textField, gbc_textField);
-		textField.setColumns(10);
-		
+
+		txf_mrglucro = new JTextField();
+		GridBagConstraints gbc_txf_mrglucro = new GridBagConstraints();
+		gbc_txf_mrglucro.insets = new Insets(0, 0, 5, 5);
+		gbc_txf_mrglucro.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txf_mrglucro.gridx = 1;
+		gbc_txf_mrglucro.gridy = 0;
+		add(txf_mrglucro, gbc_txf_mrglucro);
+		txf_mrglucro.setColumns(10);
+
 		JLabel lblCategoria = new JLabel("Categoria:");
 		lblCategoria.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_lblCategoria = new GridBagConstraints();
@@ -53,16 +74,24 @@ public class RelatorioProduto extends JPanel {
 		gbc_lblCategoria.gridx = 2;
 		gbc_lblCategoria.gridy = 0;
 		add(lblCategoria, gbc_lblCategoria);
-		
-		JComboBox comboBox = new JComboBox();
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 3;
-		gbc_comboBox.gridy = 0;
-		add(comboBox, gbc_comboBox);
-		
+
+		cmbx_catg = new JComboBox();
+		GridBagConstraints gbc_cmbx_catg = new GridBagConstraints();
+		gbc_cmbx_catg.insets = new Insets(0, 0, 5, 0);
+		gbc_cmbx_catg.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmbx_catg.gridx = 3;
+		gbc_cmbx_catg.gridy = 0;
+		add(cmbx_catg, gbc_cmbx_catg);
+
 		JButton btnFiltrar = new JButton("Filtrar");
+		btnFiltrar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gerarsql();
+
+			}
+		});
 		btnFiltrar.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_btnFiltrar = new GridBagConstraints();
 		gbc_btnFiltrar.fill = GridBagConstraints.HORIZONTAL;
@@ -70,8 +99,16 @@ public class RelatorioProduto extends JPanel {
 		gbc_btnFiltrar.gridx = 1;
 		gbc_btnFiltrar.gridy = 1;
 		add(btnFiltrar, gbc_btnFiltrar);
-		
+
 		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				atualizaTabela();
+
+			}
+		});
 		btnAtualizar.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_btnAtualizar = new GridBagConstraints();
 		gbc_btnAtualizar.fill = GridBagConstraints.HORIZONTAL;
@@ -79,8 +116,16 @@ public class RelatorioProduto extends JPanel {
 		gbc_btnAtualizar.gridx = 2;
 		gbc_btnAtualizar.gridy = 1;
 		add(btnAtualizar, gbc_btnAtualizar);
-		
+
 		JButton btnGerarPdf = new JButton("Gerar PDF");
+		btnGerarPdf.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gerarpdf();
+
+			}
+		});
 		btnGerarPdf.setFont(new Font("Arial Narrow", Font.BOLD, 11));
 		GridBagConstraints gbc_btnGerarPdf = new GridBagConstraints();
 		gbc_btnGerarPdf.fill = GridBagConstraints.HORIZONTAL;
@@ -88,7 +133,7 @@ public class RelatorioProduto extends JPanel {
 		gbc_btnGerarPdf.gridx = 3;
 		gbc_btnGerarPdf.gridy = 1;
 		add(btnGerarPdf, gbc_btnGerarPdf);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 4;
@@ -97,10 +142,81 @@ public class RelatorioProduto extends JPanel {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 2;
 		add(scrollPane, gbc_scrollPane);
-		
+
 		tableproduto = new JTable();
 		tableproduto.setFont(new Font("Consolas", Font.BOLD, 11));
 		scrollPane.setViewportView(tableproduto);
+		
+		atualizaTabela();
+		
+		preencherCMBX();
+		
+		
+	}
+
+	private void preencherCMBX() {
+		for (int i = 0; i < listaproduto.size(); i++) {
+			int in = 0;
+			
+			if (i == 0) {
+				cmbx_catg.addItem("");
+			}
+			
+			for (int x = 0; x < cmbx_catg.getItemCount(); x++) {
+				if (listaproduto.get(i).getCategoria().equals(cmbx_catg.getItemAt(x).toString())) {
+					in++;
+				if (in > 1) {
+					break;
+				}	
+				}
+				if (in < 1) cmbx_catg.addItem(listaproduto.get(i).getCategoria()); {
+					
+				}
+			}
+		}
+		
+	}
+
+	protected void gerarpdf() {
+		
+
+	}
+
+	protected void atualizaTabela() {
+		tabelaProduto = new TabelaProduto();
+		listaproduto = tabelaProduto.listar();
+		new Thread(new Runnable(){
+			public void run(){
+				tableproduto.setModel(tabelaProduto);
+			}
+		}).start();
+
+	}
+
+	protected void gerarsql() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT COD_P, CODBARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGEMLUCRO FROM PRODUTO");
+		
+		try {
+			if (Double.valueOf(txf_mrglucro.getText()) > 0) {
+				txf_mrglucro.setBackground(Color.WHITE);
+				sb.append("WHERE MARGEMLUCRO >= '" + txf_mrglucro.getText()+ "'");
+				if (cmbx_catg.getSelectedItem() != null) 
+					sb.append("AND CATEGORIA = '" + cmbx_catg.getSelectedItem()+"'");
+					
+					
+			}else if(cmbx_catg.getSelectedItem() != null){
+				sb.append("WHERE CATEGORIA = '" + cmbx_catg.getSelectedItem() + "'");
+				
+			}
+			listaproduto = tabelaProduto.mostraRelatorio(sb.toString());
+			tableproduto.setModel(tabelaProduto);
+				
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null," Digite apenas números!!!!");
+			txf_mrglucro.setBackground(Color.red);
+			txf_mrglucro.setFocusable(true);
+		}
 
 	}
 
