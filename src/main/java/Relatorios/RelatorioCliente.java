@@ -1,7 +1,9 @@
 package Relatorios;
 
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -21,6 +23,7 @@ import javax.swing.JButton;
 
 import java.awt.Desktop;
 import java.awt.Font;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -41,11 +44,11 @@ public class RelatorioCliente extends JPanel {
 	private JComboBox<String> cmbx_estado;
 	private JComboBox<String> cmbx_cidade;
 
-	private static String ARQ_PDF;
-	private String arq = "/////";
+	private static String ARQ_PDF = "ARQ_PDF.pdf";
+	private String arq = "C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources\\RelatorioCliente.Jasper";
 	private List<Cliente> listacliente;
 	private TabelaCliente tabelaCliente;
-	private String comando = "SELECT IDCOD_C, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO FROM CLIENTE";
+	private String comando = "SELECT ID_C, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO FROM CLIENTE";
 
 	/**
 	 * Create the panel.
@@ -68,13 +71,6 @@ public class RelatorioCliente extends JPanel {
 		add(lblFiltrarPorEstado, gbc_lblFiltrarPorEstado);
 
 		cmbx_estado = new JComboBox();
-		cmbx_estado.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent me) {
-				if (me.getClickCount() == 2) {
-					filtraEstado();
-				}
-			}
-		});
 		GridBagConstraints gbc_cmbx_estado = new GridBagConstraints();
 		gbc_cmbx_estado.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cmbx_estado.insets = new Insets(0, 0, 5, 5);
@@ -92,13 +88,6 @@ public class RelatorioCliente extends JPanel {
 		add(lblFiltrarPorCidade, gbc_lblFiltrarPorCidade);
 
 		cmbx_cidade = new JComboBox();
-		cmbx_cidade.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent me) {
-				if (me.getClickCount() == 2) {
-					filtraCidade();
-				}
-			}
-		});
 		GridBagConstraints gbc_cmbx_cidade = new GridBagConstraints();
 		gbc_cmbx_cidade.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cmbx_cidade.insets = new Insets(0, 0, 5, 0);
@@ -176,6 +165,12 @@ public class RelatorioCliente extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * MÉTODOS
+	 */
+	
+	//gerar pdf
 	protected void GerarPdf() {
 
 		TableModel tabelamodelo = getTabelaProduto();
@@ -185,14 +180,15 @@ public class RelatorioCliente extends JPanel {
 		try {
 
 			Map<String, Object> mp = new HashMap<>();
-			mp.put("enderecop", "Avenida Curitiba, 681");
-			mp.put("telefonep", "(45)8817-9098");
+			mp.put("endereco_c", "Avenida Curitiba, 681");
+			mp.put("telefone_c", "(45)8817-9098");
+			
+			
 			jsp = JasperFillManager.fillReport(arq, mp, new JRTableModelDataSource(tabelamodelo));
 
-			JasperExportManager.exportReportToPdfFile(jsp,
-					"C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources" + ARQ_PDF);
+			JasperExportManager.exportReportToPdfFile(jsp, ARQ_PDF);
 			Desktop.getDesktop()
-					.open(new File("C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources" + ARQ_PDF));
+					.open(new File(ARQ_PDF));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -201,9 +197,9 @@ public class RelatorioCliente extends JPanel {
 	}
 
 	private TableModel getTabelaProduto() {
-
-		String[] columnNames = { "idcod_c", "nome", "telefone", "endereco", " cidade", "estado", "email", "genero" };
-
+		String[] columnNames = { "id_c", "nome", "telefone", "endereco", "cidade", "estado", "email", "genero" };
+		
+		
 		Object[][] dados = new Object[listacliente.size()][8];
 		for (int i = 0; i < listacliente.size(); i++) {
 			int x = 0;
@@ -221,6 +217,23 @@ public class RelatorioCliente extends JPanel {
 
 	}
 
+
+	protected void filtrarEstCid() {
+		if (cmbx_cidade.getSelectedItem() != "" && cmbx_estado.getSelectedItem() != "") {
+			StringBuilder filtracomando = new StringBuilder();
+			
+			filtracomando.append(comando + "WHERE ESTADO = '" + Estado.validar(cmbx_estado.getSelectedItem().toString())
+					+ "'AND CIDADE = '" + cmbx_cidade.getSelectedItem().toString() + "'");
+
+			listacliente = tabelaCliente.mostraRelatorio(filtracomando.toString());
+			
+			tablecliente.setModel(tabelaCliente);
+			
+		} else {
+			JOptionPane.showMessageDialog(null, "Escolha a Cidade e o Estado que deseja Filtrar");
+		}
+	}
+
 	private void carregartabela() {
 		tabelaCliente = new TabelaCliente();
 		listacliente = tabelaCliente.listar();
@@ -229,12 +242,13 @@ public class RelatorioCliente extends JPanel {
 				tablecliente.setModel(tabelaCliente);
 			}
 		}).start();
-
+		
 	}
-
+	
+	
 	private void mostradados() {
 		int in = 0;
-
+		
 		for (Estado e : Estado.values()) {
 			if (in == 0) {
 				cmbx_estado.addItem("");
@@ -242,13 +256,13 @@ public class RelatorioCliente extends JPanel {
 			}
 			cmbx_estado.addItem(e.getNome());
 		}
-
+		
 		for (int x = 0; x < listacliente.size(); x++) {
 			in = 0;
 			if (x == 0) {
 				cmbx_cidade.addItem("");
 			}
-
+			
 			for (int y = 0; y < cmbx_cidade.getItemCount(); y++) {
 				if (listacliente.get(x).getCidade().equals(cmbx_cidade.getItemAt(y).toString()))
 					in++;
@@ -259,42 +273,8 @@ public class RelatorioCliente extends JPanel {
 				cmbx_cidade.addItem(listacliente.get(x).getCidade());
 		}
 	}
-
-	protected void filtrarEstCid() {
-		if (cmbx_cidade.getSelectedItem() != "" && cmbx_estado.getSelectedItem() != "") {
-			StringBuilder filtracomando = new StringBuilder();
-			filtracomando.append(comando + "WHERE ESTADO = '" + Estado.validar(cmbx_estado.getSelectedItem().toString())
-					+ "'AND CIDADE = '" + cmbx_cidade.getSelectedItem().toString() + "'");
-
-			listacliente = tabelaCliente.mostraRelatorio(filtracomando.toString());
-			tablecliente.setModel(tabelaCliente);
-		} else {
-			JOptionPane.showMessageDialog(null, "Escolha a Cidade e o Estado que deseja Filtrar");
-		}
-	}
-
-	protected void filtraCidade() {
-		if (cmbx_cidade.getSelectedItem() != "") {
-			StringBuilder filtracomando = new StringBuilder();
-			filtracomando.append(comando + "WHERE CIDADE = '" + cmbx_cidade.getSelectedItem() + "'");
-			listacliente = tabelaCliente.mostraRelatorio(filtracomando.toString());
-			tablecliente.setModel(tabelaCliente);
-		}
-
-	}
-
-	protected void filtraEstado() {
-
-		if (cmbx_estado.getSelectedItem() != "") {
-			StringBuilder filtracomando = new StringBuilder();
-			filtracomando.append(
-					comando + " WHERE ESTADO = '" + Estado.validar(cmbx_estado.getSelectedItem().toString()) + "'");
-			listacliente = tabelaCliente.mostraRelatorio(filtracomando.toString());
-			tablecliente.setModel(tabelaCliente);
-		}
-
-	}
 	
 
 
 }
+

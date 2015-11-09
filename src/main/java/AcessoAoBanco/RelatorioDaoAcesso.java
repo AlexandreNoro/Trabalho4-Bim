@@ -19,12 +19,12 @@ public class RelatorioDaoAcesso {
 	private ResultSet rs = null;
 	
 	public List<Cliente> relatorioCliente(String rltc) {
-		List<Cliente> lista = new ArrayList<>();
+		List<Cliente> lista = new ArrayList<Cliente>();
 		try {
 			st = conexao.createStatement();
 			rs = st.executeQuery(rltc);
 			while (rs.next()) {
-				lista.add(new Cliente(rs.getInt("IDCOD_C"), rs.getString("NOME"), rs
+				lista.add(new Cliente(rs.getInt("ID_C"), rs.getString("NOME"), rs
 						.getString("TELEFONE"), rs.getString("ENDERECO"), rs
 						.getString("CIDADE"), Estado.valueOf(Estado.class,
 						rs.getString("ESTADO")), rs.getString("EMAIL"), Genero
@@ -43,18 +43,18 @@ public class RelatorioDaoAcesso {
 	
 	
 	public List<Produto> relatorioProduto(String rltp) {
-		List<Produto> lista = new ArrayList<>();
+		List<Produto> lista = new ArrayList<Produto>();
 		try {
 			st = conexao.createStatement();
 			rs = st.executeQuery(rltp);
 			while(rs.next()){
-				lista.add(new Produto(rs.getInt("IDCOD_P") , 
-						rs.getInt("CODBARRA"),
+				lista.add(new Produto(rs.getInt("COD_P") , 
+						rs.getInt("COD_BARRA"),
 						rs.getString("CATEGORIA"),
 						rs.getString("DESCRICAO"),
 						rs.getString("UNIDADE"),
 						rs.getBigDecimal("CUSTO"),
-						rs.getBigDecimal("MARGEMLUCRO")));
+						rs.getBigDecimal("MARGE_LUCRO")));
 			}
 			rs.close();
 			st.close();
@@ -67,20 +67,19 @@ public class RelatorioDaoAcesso {
 	}
 	
 	public List<Vendas> relatorioVendas(StringBuilder rltv) {
-		System.out.println(rltv.toString() + " UNION " + rltv.toString());
 		List<Vendas> lista = new ArrayList<Vendas>();
 		try {
 			st = conexao.createStatement();
 			rs = st.executeQuery(rltv.toString() + " UNION " + rltv.toString());
 			while (rs.next()) {
-				lista.add(new Vendas(rs.getInt("IDCOD_VENDA"),
+				lista.add(new Vendas(rs.getInt("COD_V"),
 						rs.getString("CLIENTE"),
 						rs.getString("PRODUTO"),
-						rs.getBigDecimal("VLRTOTAL"),
-						rs.getBigDecimal("VLRPAGO"),
+						rs.getBigDecimal("VTOTAL"),
+						rs.getBigDecimal("VPAGAMENTO"),
 						rs.getBigDecimal("TROCO"),
-						rs.getString("DATACOMPRA"),
-						rs.getString("HORACOMPRA")));
+						rs.getString("DATA"),
+						rs.getString("HORA")));
 			}
 			rs.close();
 			st.close();
@@ -91,13 +90,13 @@ public class RelatorioDaoAcesso {
 		return null;
 	}
 	
-	public List<String> relatorioCategoriaProduto() {
-		List<String> lista = new ArrayList<>();
+	public List<String> listarCategoriaProduto() {
+		List<String> lista = new ArrayList<String>();
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery("SELECT CATEGORIA FROM PRODUTO");
+			rs = st.executeQuery("SELECT categoria FROM PRODUTO");
 			while(rs.next()){
-				lista.add(rs.getString("CATEGORIA"));
+				lista.add(rs.getString("categoria"));
 			}
 			rs.close();
 			st.close();

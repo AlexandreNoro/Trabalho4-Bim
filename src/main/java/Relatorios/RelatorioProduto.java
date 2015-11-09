@@ -33,7 +33,7 @@ public class RelatorioProduto extends JPanel {
 	private JComboBox<String> cmbx_catg;
 
 	private static String ARQ_PDF;
-	private String arq = "\\\\";
+	private String arq = "C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources\\RelatorioProduto.Jasper";
 	private List<Produto> listaproduto;
 	private TabelaProduto tabelaProduto;
 

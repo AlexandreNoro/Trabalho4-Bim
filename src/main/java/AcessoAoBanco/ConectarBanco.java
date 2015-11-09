@@ -20,7 +20,7 @@ public class ConectarBanco {
 
 	public Connection abreConexao() {
 		String driverName = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost/trabalhoFinal";
+		String url = "jdbc:mysql://localhost/trabalho4bim";
 		String user = "root";
 		String pass = "142536";
 		try {
