@@ -236,7 +236,7 @@ public class MioloCadastroCliente extends JPanel {
 		gbc_btnGravar.gridy = 8;
 		add(btnGravar, gbc_btnGravar);
 
-		btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Alterar");
 		btnEditar.addActionListener(new ActionListener() {
 
 			@Override

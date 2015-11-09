@@ -64,13 +64,13 @@ public class TabelaCliente extends AbstractTableModel {
 		case 2:
 			return "TELEFONE";
 		case 3:
-			return "ENDERECO";
+			return "ENDEREÇO";
 		case 4:
 			return "CIDADE";
 		case 5:
 			return "ESTADO";
 		case 6:
-			return "GENERO";
+			return "GÊNERO";
 		case 7:
 			return "E-MAIL";
 

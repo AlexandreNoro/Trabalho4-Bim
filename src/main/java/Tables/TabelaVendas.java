@@ -60,7 +60,7 @@ public class TabelaVendas extends AbstractTableModel {
 		switch (coluna) {
 
 		case 0:
-			return "ID_VENDA";
+			return "ID DA VENDA";
 		case 1:
 			return "CLIENTE";
 		case 2:
@@ -68,13 +68,13 @@ public class TabelaVendas extends AbstractTableModel {
 		case 3:
 			return "VALOR TOTAL";
 		case 4:
-			return "VALOR PAGO";
+			return "VALOR DO PAGAMENTO";
 		case 5:
 			return "TROCO";
 		case 6:
-			return "DATA_COMPRA";
+			return "DATA DA COMPRA";
 		case 7:
-			return "HORA_COMPRA";
+			return "HORÁRIO DA COMPRA";
 
 		default:
 			return "Nao Existe";

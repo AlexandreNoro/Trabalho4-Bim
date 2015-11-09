@@ -49,9 +49,9 @@ public class TabelaUsuario extends AbstractTableModel {
 		switch (coluna) {
 
 		case 0:
-			return "ID USUÁRIO";
+			return "ID DO USUÁRIO";
 		case 1:
-			return "ID CLIENTE";
+			return "ID DO CLIENTE";
 		case 2:
 			return "USUÁRIO";
 		case 3:

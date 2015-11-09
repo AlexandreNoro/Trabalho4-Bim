@@ -174,6 +174,7 @@ public class TelaPrincipal extends JFrame {
 		setContentPane(contentPane);
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setToolTipText("");
 		tabbedPane.setBackground(new Color(255, 255, 255));
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}

@@ -130,7 +130,8 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 			}
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro ao listar Usuários!!!/n" + e.getMessage());
+		//	JOptionPane.showMessageDialog(null, "Erro ao listar Usuários!!!/n" + e.getMessage());
+		e.printStackTrace();
 		}
 		return null;
 	}

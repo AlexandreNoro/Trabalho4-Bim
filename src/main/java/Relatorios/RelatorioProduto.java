@@ -10,18 +10,28 @@ import javax.swing.JOptionPane;
 
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import Tables.TabelaProduto;
 import br.univel.cadastroCliente.Produto;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JComboBox;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -146,47 +156,87 @@ public class RelatorioProduto extends JPanel {
 		tableproduto = new JTable();
 		tableproduto.setFont(new Font("Consolas", Font.BOLD, 11));
 		scrollPane.setViewportView(tableproduto);
-		
+
 		atualizaTabela();
-		
+
 		preencherCMBX();
-		
-		
+
 	}
 
 	private void preencherCMBX() {
 		for (int i = 0; i < listaproduto.size(); i++) {
 			int in = 0;
-			
+
 			if (i == 0) {
 				cmbx_catg.addItem("");
 			}
-			
+
 			for (int x = 0; x < cmbx_catg.getItemCount(); x++) {
 				if (listaproduto.get(i).getCategoria().equals(cmbx_catg.getItemAt(x).toString())) {
 					in++;
-				if (in > 1) {
-					break;
-				}	
+					if (in > 1) {
+						break;
+					}
 				}
-				if (in < 1) cmbx_catg.addItem(listaproduto.get(i).getCategoria()); {
-					
+				if (in < 1)
+					cmbx_catg.addItem(listaproduto.get(i).getCategoria());
+				{
+
 				}
 			}
 		}
-		
+
 	}
 
 	protected void gerarpdf() {
-		
+		TableModel tabelamodelo = getTabelaProduto();
+
+		JasperPrint jsp = null;
+
+		try {
+
+			Map<String, Object> mp = new HashMap<>();
+			mp.put("endereco_c", "Avenida Curitiba, 681");
+			mp.put("telefone_c", "(45)8817-9098");
+
+			jsp = JasperFillManager.fillReport(arq, mp, new JRTableModelDataSource(tabelamodelo));
+
+			JasperExportManager.exportReportToPdfFile(jsp, ARQ_PDF);
+			Desktop.getDesktop().open(new File(ARQ_PDF));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
+	
+	private TableModel getTabelaProduto() {
+		String[] columnNames = { "cod_p", "cod_barra", "categoria", "descricao", "unidade", "custo", "marge_lucro" };
+		
+		
+		Object[][] dados = new Object[listaproduto.size()][8];
+		for (int i = 0; i < listaproduto.size(); i++) {
+			int x = 0;
+			dados[i][x++] = listaproduto.get(i).getcod_p();
+			dados[i][x++] = listaproduto.get(i).getCodbarra();
+			dados[i][x++] = listaproduto.get(i).getCategoria();
+			dados[i][x++] = listaproduto.get(i).getDescricao();
+			dados[i][x++] = listaproduto.get(i).getUnidade();
+			dados[i][x++] = listaproduto.get(i).getCusto();
+			dados[i][x++] = listaproduto.get(i).getMargemlucro();
+		}
+
+		return new DefaultTableModel(dados, columnNames);
+
+	}
+
+	
 
 	protected void atualizaTabela() {
 		tabelaProduto = new TabelaProduto();
 		listaproduto = tabelaProduto.listar();
-		new Thread(new Runnable(){
-			public void run(){
+		new Thread(new Runnable() {
+			public void run() {
 				tableproduto.setModel(tabelaProduto);
 			}
 		}).start();
@@ -195,26 +245,25 @@ public class RelatorioProduto extends JPanel {
 
 	protected void gerarsql() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT COD_P, CODBARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGEMLUCRO FROM PRODUTO");
-		
+		sb.append("SELECT cod_p, cod_barra, categoria, descricao, unidade, custo, marge_lucro FROM PRODUTO");
+
 		try {
 			if (Double.valueOf(txf_mrglucro.getText()) > 0) {
 				txf_mrglucro.setBackground(Color.WHITE);
-				sb.append("WHERE MARGEMLUCRO >= '" + txf_mrglucro.getText()+ "'");
-				if (cmbx_catg.getSelectedItem() != null) 
-					sb.append("AND CATEGORIA = '" + cmbx_catg.getSelectedItem()+"'");
-					
-					
-			}else if(cmbx_catg.getSelectedItem() != null){
-				sb.append("WHERE CATEGORIA = '" + cmbx_catg.getSelectedItem() + "'");
-				
+				sb.append(" WHERE MARGE_LUCRO >= '" + txf_mrglucro.getText() + "'");
+				if (cmbx_catg.getSelectedItem() != null)
+					sb.append(" AND CATEGORIA = '" + cmbx_catg.getSelectedItem() + "'");
+
+			} else if (cmbx_catg.getSelectedItem() != null) {
+				sb.append(" WHERE CATEGORIA = '" + cmbx_catg.getSelectedItem() + "'");
+
 			}
 			listaproduto = tabelaProduto.mostraRelatorio(sb.toString());
 			tableproduto.setModel(tabelaProduto);
-				
+
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null," Digite apenas números!!!!");
-			txf_mrglucro.setBackground(Color.red);
+			JOptionPane.showMessageDialog(null, " Digite apenas números!!!!");
+			txf_mrglucro.setBackground(Color.blue);
 			txf_mrglucro.setFocusable(true);
 		}
 

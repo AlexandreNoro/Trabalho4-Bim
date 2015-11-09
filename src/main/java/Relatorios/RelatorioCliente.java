@@ -222,9 +222,8 @@ public class RelatorioCliente extends JPanel {
 		if (cmbx_cidade.getSelectedItem() != "" && cmbx_estado.getSelectedItem() != "") {
 			StringBuilder filtracomando = new StringBuilder();
 			
-			filtracomando.append(comando + "WHERE ESTADO = '" + Estado.validar(cmbx_estado.getSelectedItem().toString())
-					+ "'AND CIDADE = '" + cmbx_cidade.getSelectedItem().toString() + "'");
-
+			filtracomando.append(comando + " WHERE ESTADO = '" + Estado.validar(cmbx_estado.getSelectedItem().toString())
+					+ "' AND CIDADE = '" + cmbx_cidade.getSelectedItem().toString() + "'");
 			listacliente = tabelaCliente.mostraRelatorio(filtracomando.toString());
 			
 			tablecliente.setModel(tabelaCliente);

@@ -58,13 +58,13 @@ public class TabelaProduto extends AbstractTableModel {
 		switch (coluna) {
 
 		case 0:
-			return "CODIGO PRODUTO";
+			return "CÓDIGO PRODUTO";
 		case 1:
-			return "COD_BARRA";
+			return "CÓDIGO DE BARRAS";
 		case 2:
 			return "CATEGORIA";
 		case 3:
-			return "DESCRICAO";
+			return "DESCRIÇÃO";
 		case 4:
 			return "UNIDADE";
 		case 5:

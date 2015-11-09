@@ -251,8 +251,8 @@ public class RelatorioVenda extends JPanel {
 			try {
 
 				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("empresa", "Petrobras");
-				map.put("telefone", "123pim567pim");
+				map.put("empresa", "NOROSYSTEM");
+				map.put("telefone", "(45)8817-9098");
 
 				jp = JasperFillManager.fillReport(arq, map,
 						new JRTableModelDataSource(tableModel));
