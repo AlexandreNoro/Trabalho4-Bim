@@ -15,50 +15,41 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 
-	@Override
-	public void inserir(Produto p) {
+	public void inserir(Produto pd) {
 		PreparedStatement ps;
 		try {
-			ps = conexao.prepareStatement(
-					"INSERT INTO PRODUTO(CODBARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGEMLUCRO) VALUES (?, ?, ?, ?, ?)");
-
-			ps.setInt(1, p.getCodbarra());
-			ps.setString(2, p.getCategoria());
-			ps.setString(3, p.getDescricao());
-			ps.setString(4, p.getUnidade());
-			ps.setBigDecimal(5, p.getCusto());
-			ps.setBigDecimal(6, p.getMargemlucro());
-
+			ps = conexao
+					.prepareStatement("INSERT INTO PRODUTO (COD_BARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGE_LUCRO) VALUES (?, ?, ?, ?, ?, ?)");
+			ps.setInt(1, pd.getCodbarra());
+			ps.setString(2, pd.getCategoria());
+			ps.setString(3, pd.getDescricao());
+			ps.setString(4, pd.getUnidade());
+			ps.setBigDecimal(5, pd.getCusto());
+			ps.setBigDecimal(6, pd.getMargemlucro());
 			ps.executeUpdate();
-
 			ps.close();
 
-			JOptionPane.showMessageDialog(null, "Produto: " + p.getDescricao() + "inserido com sucesso!!!");
+			JOptionPane.showMessageDialog(null, "Produto: " + pd.getDescricao() + "inserido com sucesso!!!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	@Override
 	public void atualizar(Produto p) {
 
 		PreparedStatement ps;
 		try {
-			ps = conexao.prepareStatement(
-					"UPDATE PRODUTO SET CODBARRA = ?,CATEGORIA = ?,DESCRICAO = ?,UNIDADE = ?, CUSTO = ?, MARGEMLUCRO = ?  WHERE COD_P ="
-							+ p.getcod_p());
-
+			ps = conexao
+					.prepareStatement("UPDATE PRODUTO SET COD_BARRA = ?, CATEGORIA = ?, DESCRICAO = ?,"
+							+ " UNIDADE = ?, CUSTO = ?, MARGE_LUCRO = ? WHERE COD_P = " + p.getcod_p());
 			ps.setInt(1, p.getCodbarra());
 			ps.setString(2, p.getCategoria());
 			ps.setString(3, p.getDescricao());
 			ps.setString(4, p.getUnidade());
 			ps.setBigDecimal(5, p.getCusto());
-
-			ps.setBigDecimal(8, p.getMargemlucro());
-
+			ps.setBigDecimal(6, p.getMargemlucro());
 			ps.executeUpdate();
-
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Produto" + p.getDescricao() + "alterado com Sucesso!!!");
@@ -69,15 +60,12 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 
 	}
 
-	@Override
 	public void excluir(int id_p) {
 
 		PreparedStatement ps;
 		try {
-			ps = conexao.prepareStatement("DELETE FROM PRODUTO WHERE IDCOD_C =" + id_p);
-
+			ps = conexao.prepareStatement("DELETE FROM PRODUTO WHERE COD_P =" + id_p);
 			ps.executeUpdate();
-
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Produto excluído com Sucesso!!!");
@@ -89,20 +77,22 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 
 	}
 
-	@Override
 	public Produto buscar(int id_p) {
 		Statement st = null;
 		ResultSet rs = null;
 		Produto p = null;
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery(
-					"SELECT CODBARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGEMLUCRO FROM PRODUTO WHERE COD_P ="
-							+ id_p);
+			rs = st.executeQuery("SELECT COD_BARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGE_LUCRO "
+					+ "FROM PRODUTO WHERE COD_P = " + id_p);
 			rs.next();
 			if (rs.getString("NOME") != null) {
-				p = new Produto(id_p, rs.getInt("CODBARRA"), rs.getString("CATEGORIA"), rs.getString("DESCRICAO"),
-						rs.getString("UNIDADE"), rs.getBigDecimal("CUSTO"), rs.getBigDecimal("MARGEMLUCRO"));
+				p = new Produto(id_p , rs.getInt("COD_BARRA"),
+						rs.getString("CATEGORIA"),
+						rs.getString("DESCRICAO"), 
+						rs.getString("UNIDADE"), 
+						rs.getBigDecimal("CUSTO"),
+						rs.getBigDecimal("MARGE_LUCRO"));
 			}
 			rs.close();
 			st.close();
@@ -114,23 +104,25 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 		return null;
 	}
 
-	@Override
 	public List<Produto> listar() {
 
 		Statement st = null;
 		ResultSet rs = null;
-		Produto p = null;
 
 		ArrayList<Produto> lista = new ArrayList<Produto>();
 
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery(
-					"SELECT COD_P, CODBARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGEMLUCRO " + "FROM PRODUTO");
-			while (rs.next()) {
-				lista.add(p = new Produto(rs.getInt("COD_P"), rs.getInt("CODBARRA"), rs.getString("CATEGORIA"),
-						rs.getString("DESCRICAO"), rs.getString("UNIDADE"), rs.getBigDecimal("CUSTO"),
-						rs.getBigDecimal("MARGEMLUCRO")));
+			rs = st.executeQuery("SELECT COD_P, COD_BARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGE_LUCRO "
+					+ "FROM PRODUTO");
+			while(rs.next()){
+				lista.add(new Produto(rs.getInt("COD_P") , 
+						rs.getInt("COD_BARRA"),
+						rs.getString("CATEGORIA"),
+						rs.getString("DESCRICAO"),
+						rs.getString("UNIDADE"),
+						rs.getBigDecimal("CUSTO"),
+						rs.getBigDecimal("MARGE_LUCRO")));
 			}
 			rs.close();
 			st.close();
