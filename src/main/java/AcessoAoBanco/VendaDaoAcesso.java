@@ -14,27 +14,26 @@ import br.univel.cadastroCliente.Vendas;
 public class VendaDaoAcesso implements AcessoDao<Vendas> {
 
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
-	
+
 	public void inserir(Vendas v) {
 
 		PreparedStatement ps;
-
 		try {
 			ps = conexao.prepareStatement("INSERT INTO VENDA (ID_C, CLIENTE, COD_P,"
 					+ " PRODUTO, VTOTAL, VPAGAMENTO, TROCO, DATA, HORA) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			ps.setInt(1, v.getIdcod_c());
+			ps.setInt(1, v.getId_c());
 			ps.setString(2, v.getCliente());
-			ps.setInt(3, v.getcod_p());
+			ps.setInt(3, v.getCod_p());
 			ps.setString(4, v.getProduto());
-			ps.setBigDecimal(5, v.getVlrtotal());
-			ps.setBigDecimal(6, v.getVlrPago());
+			ps.setBigDecimal(5, v.getvTotal());
+			ps.setBigDecimal(6, v.getvPago());
 			ps.setBigDecimal(7, v.getTroco());
-			ps.setString(8, v.getDatacompra());
-			ps.setString(9, v.getHoracompra());
+			ps.setString(8, v.getData());
+			ps.setString(9, v.getHora());
 			ps.executeUpdate();
 			ps.close();
-			if (v.getIdcod_venda() == 0) {
-				JOptionPane.showMessageDialog(null, "Venda Realizada com Sucesso");
+			if (v.getCod_v() == 0) {
+				JOptionPane.showMessageDialog(null, "Produto " + v.getProduto() + " vendido com Sucesso");
 			} else {
 				JOptionPane.showMessageDialog(null, "Venda Atualizada com Sucesso");
 			}
@@ -71,20 +70,13 @@ public class VendaDaoAcesso implements AcessoDao<Vendas> {
 
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery("SELECT ID_C, CLIENTE, COD_P,"
-					+ "PRODUTO, VTOTAL, VPAGAMENTO, TROCO, DATA, HORA"
+			rs = st.executeQuery("SELECT ID_C, CLIENTE, COD_P," + "PRODUTO, VTOTAL, VPAGAMENTO, TROCO, DATA, HORA"
 					+ "FROM venda WHERE COD_V = " + idcod_v);
 			rs.next();
 			if (rs.getString("CLIENTE") != null) {
-				v = new Vendas(rs.getInt("ID_C"),
-						rs.getInt("COD_P"),
-						rs.getString("CLIENTE"),
-						rs.getString("PRODUTO"),
-						rs.getBigDecimal("VTOTAL"),
-						rs.getBigDecimal("VPAGAMENTO"),
-						rs.getBigDecimal("TROCO"),
-						rs.getString("DATA"),
-						rs.getString("HORA"));
+				v = new Vendas(rs.getInt("ID_C"), rs.getInt("COD_P"), rs.getString("CLIENTE"), rs.getString("PRODUTO"),
+						rs.getBigDecimal("VTOTAL"), rs.getBigDecimal("VPAGAMENTO"), rs.getBigDecimal("TROCO"),
+						rs.getString("DATA"), rs.getString("HORA"));
 			}
 			rs.close();
 			st.close();
@@ -107,16 +99,9 @@ public class VendaDaoAcesso implements AcessoDao<Vendas> {
 			rs = st.executeQuery("SELECT COD_V, ID_C, CLIENTE, COD_P,"
 					+ "PRODUTO, VTOTAL, VPAGAMENTO, TROCO, DATA, HORA FROM VENDA");
 			while (rs.next()) {
-				lista.add(new Vendas(rs.getInt("COD_V"),
-						rs.getInt("ID_C"),
-						rs.getInt("COD_P"),
-						rs.getString("CLIENTE"),
-						rs.getString("PRODUTO"),
-						rs.getBigDecimal("VTOTAL"),
-						rs.getBigDecimal("VPAGAMENTO"),
-						rs.getBigDecimal("TROCO"),
-						rs.getString("DATA"),
-						rs.getString("HORA")));
+				lista.add(new Vendas(rs.getInt("COD_V"), rs.getInt("ID_C"), rs.getInt("COD_P"), rs.getString("CLIENTE"),
+						rs.getString("PRODUTO"), rs.getBigDecimal("VTOTAL"), rs.getBigDecimal("VPAGAMENTO"),
+						rs.getBigDecimal("TROCO"), rs.getString("DATA"), rs.getString("HORA")));
 			}
 			rs.close();
 			st.close();
@@ -127,7 +112,7 @@ public class VendaDaoAcesso implements AcessoDao<Vendas> {
 		return null;
 
 	}
-	
+
 	public Connection getConexao() {
 		return conexao;
 

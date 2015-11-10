@@ -42,7 +42,7 @@ public class TabelaCliente extends AbstractTableModel {
 		case 5:
 			return c.getEstado().getNome();
 		case 6:
-			return c.getGenero();
+			return c.getGenero().getNome();
 		case 7:
 			return c.getEmail();
 

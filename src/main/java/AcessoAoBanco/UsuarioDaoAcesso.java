@@ -27,7 +27,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 			ps.executeUpdate();
 			ps.close();
 
-			JOptionPane.showMessageDialog(null, "Usuário: " + user.getCliente() + "inserido com sucesso!!!");
+			JOptionPane.showMessageDialog(null, "Usuário: " + user.getCliente() + " inserido com sucesso!!!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +46,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 			ps.executeUpdate();
 			ps.close();
 
-			JOptionPane.showMessageDialog(null, "Usuário" + user.getCliente() + "alterado com Sucesso!!!");
+			JOptionPane.showMessageDialog(null, "Usuário: " + user.getCliente() + " alterado com Sucesso!!!");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -58,7 +58,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 	public void excluir(int user) {
 		PreparedStatement ps;
 		try {
-			ps = conexao.prepareStatement("DELETE FROM USUARIO WHERE ID_U = "
+			ps = conexao.prepareStatement("DELETE FROM USUARIO WHERE ID_C = "
 					+ user);
 			ps.executeUpdate();
 			ps.close();

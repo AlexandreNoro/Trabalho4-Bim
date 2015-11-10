@@ -23,7 +23,8 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 
 		PreparedStatement ps;
 		try {
-			ps = conexao.prepareStatement("INSERT INTO CLIENTE (NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			ps = conexao.prepareStatement(
+					"INSERT INTO CLIENTE (NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			ps.setString(1, c.getNome());
 			ps.setString(2, c.getTelefone());
 			ps.setString(3, c.getEndereco());
@@ -34,7 +35,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 			ps.executeUpdate();
 			ps.close();
 
-			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome() + "inserido com sucesso!!!");
+			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome() + " inserido com sucesso!!!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -46,9 +47,9 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 
 		PreparedStatement ps;
 		try {
-			ps = conexao.prepareStatement("UPDATE CLIENTE SET NOME = ?,"
-					+ " TELEFONE = ?, ENDERECO = ?, CIDADE = ?, ESTADO = ?,"
-					+ " EMAIL = ?, GENERO = ? WHERE ID_C = " + c.getId());
+			ps = conexao.prepareStatement(
+					"UPDATE CLIENTE SET NOME = ?," + " TELEFONE = ?, ENDERECO = ?, CIDADE = ?, ESTADO = ?,"
+							+ " EMAIL = ?, GENERO = ? WHERE ID_C = " + c.getId());
 			ps.setString(1, c.getNome());
 			ps.setString(2, c.getTelefone());
 			ps.setString(3, c.getEndereco());
@@ -59,7 +60,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 			ps.executeUpdate();
 			ps.close();
 
-			JOptionPane.showMessageDialog(null, "Cliente" + c.getNome() + "alterado com Sucesso!!!");
+			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome() + " alterado com Sucesso!!!");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,8 +69,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 
 	// Método excluir
 	public void excluir(int id) {
-
-		PreparedStatement ps;
+		PreparedStatement ps = null;
 		try {
 			ps = conexao.prepareStatement("DELETE FROM CLIENTE WHERE ID_C =" + id);
 			ps.executeUpdate();
@@ -96,18 +96,15 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 					+ "FROM CLIENTE WHERE ID_C = " + id);
 			rs.next();
 			if (rs.getString("NOME") != null) {
-				c = new Cliente(rs.getString("NOME"), rs.getString("TELEFONE"),
-						rs.getString("ENDERECO"), rs.getString("CIDADE"),
-						Estado.valueOf(Estado.class, rs.getString("ESTADO")),
-						rs.getString("EMAIL"), Genero.valueOf(Genero.class,
-								rs.getString("GENERO")));
+				c = new Cliente(rs.getString("NOME"), rs.getString("TELEFONE"), rs.getString("ENDERECO"),
+						rs.getString("CIDADE"), Estado.valueOf(Estado.class, rs.getString("ESTADO")),
+						rs.getString("EMAIL"), Genero.valueOf(Genero.class, rs.getString("GENERO")));
 			}
 			rs.close();
 			st.close();
 			return c;
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,
-					"Ocorreu um erro ao buscar o Cliente desejado!\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, " Ocorreu um erro ao buscar o Cliente desejado!\n" + e.getMessage());
 		}
 		return null;
 	}
@@ -117,17 +114,16 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 		Statement st = null;
 		ResultSet rs = null;
 
-		List<Cliente>lista = new ArrayList<Cliente>();
+		List<Cliente> lista = new ArrayList<Cliente>();
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery("SELECT ID_C, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
-					+ "FROM CLIENTE");
+			rs = st.executeQuery(
+					"SELECT ID_C, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO " + "FROM CLIENTE");
 			while (rs.next()) {
-				lista.add(new Cliente(rs.getInt("ID_C"), rs.getString("NOME"), rs
-						.getString("TELEFONE"), rs.getString("ENDERECO"), rs
-						.getString("CIDADE"), Estado.valueOf(Estado.class,
-						rs.getString("ESTADO")), rs.getString("EMAIL"), Genero
-						.valueOf(Genero.class, rs.getString("GENERO"))));
+				lista.add(new Cliente(rs.getInt("ID_C"), rs.getString("NOME"), rs.getString("TELEFONE"),
+						rs.getString("ENDERECO"), rs.getString("CIDADE"),
+						Estado.valueOf(Estado.class, rs.getString("ESTADO")), rs.getString("EMAIL"),
+						Genero.valueOf(Genero.class, rs.getString("GENERO"))));
 			}
 			rs.close();
 			st.close();
@@ -140,7 +136,6 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 		return null;
 	}
 
-	
 	public Connection getConexao() {
 		return conexao;
 

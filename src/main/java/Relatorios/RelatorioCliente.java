@@ -44,7 +44,7 @@ public class RelatorioCliente extends JPanel {
 	private JComboBox<String> cmbx_estado;
 	private JComboBox<String> cmbx_cidade;
 
-	private static String ARQ_PDF = "ARQ_PDF.pdf";
+	private static String ARQ_PDF = "relatorio de cliente.pdf";
 	private String arq = "C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources\\RelatorioCliente.Jasper";
 	private List<Cliente> listacliente;
 	private TabelaCliente tabelaCliente;

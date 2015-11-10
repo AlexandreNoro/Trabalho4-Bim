@@ -13,7 +13,7 @@ public enum Estado {
 	GO("Goiás"),
 	MA("Maranhão"),
 	MT("Mato Grosso"),
-	MS("mato Grosso do Sul"),
+	MS("Mato Grosso do Sul"),
 	MG("Minas Gerais"),
 	PA("Pará"),
 	PB("Paraiba"),

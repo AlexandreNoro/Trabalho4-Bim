@@ -353,14 +353,14 @@ public class MioloCadastroVendas extends JPanel {
 
 	public void retornaVendas(Vendas v) {
 
-		txf_codvenda.setText(String.valueOf(v.getIdcod_venda()));
+		txf_codvenda.setText(String.valueOf(v.getCod_v()));
 		cmbx_cliente.setSelectedItem(v.getCliente());
 		cmbx_produto.setSelectedItem(v.getProduto());
-		txf_vlrtotal.setText(String.valueOf(v.getVlrtotal()));
-		txf_vlrpago.setText(String.valueOf(v.getVlrPago()));
+		txf_vlrtotal.setText(String.valueOf(v.getvTotal()));
+		txf_vlrpago.setText(String.valueOf(v.getvPago()));
 		txf_troco.setText(String.valueOf(v.getTroco()));
-		txf_datacompra.setText(v.getDatacompra());
-		txf_horacompra.setText(v.getHoracompra());
+		txf_datacompra.setText(v.getData());
+		txf_horacompra.setText(v.getHora());
 
 	}
 	

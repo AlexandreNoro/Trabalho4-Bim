@@ -325,6 +325,7 @@ public class MioloCadastroProduto extends JPanel {
 		txfCodigo.setText("");
 		txfCategoria.setText("");
 		txfDescricao.setText("");
+		txfUnidade.setText("");
 		txfcusto.setText("");
 		txflucro.setText("");
 	}
@@ -336,7 +337,7 @@ public class MioloCadastroProduto extends JPanel {
 		txfDescricao.setText(p.getDescricao());
 		txfUnidade.setText(p.getUnidade());
 		txfcusto.setText(String.valueOf(p.getCusto()));
-		txfUnidade.setText(String.valueOf(p.getMargemlucro()));
+		txflucro.setText(String.valueOf(p.getMargemlucro()));
 
 	}
 

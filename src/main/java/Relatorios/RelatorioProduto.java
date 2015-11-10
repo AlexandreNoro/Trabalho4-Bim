@@ -42,8 +42,8 @@ public class RelatorioProduto extends JPanel {
 	private JTable tableproduto;
 	private JComboBox<String> cmbx_catg;
 
-	private static String ARQ_PDF;
-	private String arq = "C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources\\RelatorioProduto.Jasper";
+	private static String ARQ_PDF = "relatorio de produto.pdf";
+	private String arq = "C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources\\RelatorioProduto.jasper";
 	private List<Produto> listaproduto;
 	private TabelaProduto tabelaProduto;
 
@@ -217,7 +217,7 @@ public class RelatorioProduto extends JPanel {
 		Object[][] dados = new Object[listaproduto.size()][8];
 		for (int i = 0; i < listaproduto.size(); i++) {
 			int x = 0;
-			dados[i][x++] = listaproduto.get(i).getcod_p();
+			dados[i][x++] = Long.valueOf(listaproduto.get(i).getcod_p());
 			dados[i][x++] = listaproduto.get(i).getCodbarra();
 			dados[i][x++] = listaproduto.get(i).getCategoria();
 			dados[i][x++] = listaproduto.get(i).getDescricao();

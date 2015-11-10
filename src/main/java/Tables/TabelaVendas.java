@@ -33,21 +33,21 @@ public class TabelaVendas extends AbstractTableModel {
 		Vendas v = lista.get(linha);
 		switch (coluna) {
 		case 0:
-			return v.getIdcod_venda();
+			return v.getCod_v();
 		case 1:
 			return v.getCliente();
 		case 2:
 			return v.getProduto();
 		case 3:
-			return v.getVlrtotal();
+			return v.getvTotal();
 		case 4:
-			return v.getVlrPago();
+			return v.getvPago();
 		case 5:
 			return v.getTroco();
 		case 6:
-			return v.getDatacompra();
+			return v.getData();
 		case 7:
-			return v.getHoracompra();
+			return v.getHora();
 
 		default:
 			return "Nao Existe";

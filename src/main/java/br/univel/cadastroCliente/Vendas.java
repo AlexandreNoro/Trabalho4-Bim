@@ -2,114 +2,99 @@ package br.univel.cadastroCliente;
 
 import java.math.BigDecimal;
 
-//Classe Venda: Criado classe venda com valores necessários para venda.
-
 public class Vendas {
-
-	private BigDecimal vlrtotal;
-	private BigDecimal troco;
-	private BigDecimal vlrPago;
+	private int cod_v;
+	private int id_c;
+	private int cod_p;
 	private String cliente;
 	private String produto;
-	private int idcod_venda;
-	private int idcod_c;
-	private int cod_p;
-	private String datacompra;
-	private String horacompra;
+	private BigDecimal vTotal;
+	private BigDecimal vPago;
+	private BigDecimal troco;
+	private String data;
+	private String hora;
 
-	// Getters da classe
+	public Vendas() {
+	}
 
-	public BigDecimal getVlrtotal() {
-		return vlrtotal;
+	// Métodos geters e seters
+	public int getCod_v() {
+		return cod_v;
+	}
+
+	public int getId_c() {
+		return id_c;
+	}
+
+	public int getCod_p() {
+		return cod_p;
+	}
+
+	public String getCliente() {
+		return cliente;
+	}
+
+	public String getProduto() {
+		return produto;
+	}
+
+	public BigDecimal getvTotal() {
+		return vTotal;
+	}
+
+	public BigDecimal getvPago() {
+		return vPago;
 	}
 
 	public BigDecimal getTroco() {
 		return troco;
 	}
 
-
-	public BigDecimal getVlrPago() {
-		return vlrPago;
+	public String getData() {
+		return data;
 	}
 
-
-	public String getCliente() {
-		return cliente;
+	public String getHora() {
+		return hora;
 	}
 
-
-	public String getProduto() {
-		return produto;
-	}
-
-
-	public int getIdcod_venda() {
-		return idcod_venda;
-	}
-
-
-	public int getIdcod_c() {
-		return idcod_c;
-	}
-
-	public int getcod_p() {
-		return cod_p;
-	}
-
-
-	public String getDatacompra() {
-		return datacompra;
-	}
-
-
-	public String getHoracompra() {
-		return horacompra;
-	}
-
-	//Contrutores da classe venda
-	public Vendas() {
-	}
-
-	public Vendas(int idcod_venda, int idcod_c, int idcod_preco, String cliente,String produto,
-			BigDecimal vlrtotal, BigDecimal vlrPago, BigDecimal troco, String datacompra,
-			String horacompra) {
-		this.idcod_venda = idcod_venda;
-		this.idcod_c = idcod_c;
+	public Vendas(int cod_v, int id_c, int cod_p, String cliente, String produto, BigDecimal vTotal, BigDecimal vPago,
+			BigDecimal troco, String data, String hora) {
+		this.cod_v = cod_v;
+		this.id_c = id_c;
 		this.cliente = cliente;
 		this.produto = produto;
-		this.vlrtotal = vlrtotal;
-		this.vlrPago = vlrPago;
+		this.vTotal = vTotal;
+		this.vPago = vPago;
 		this.troco = troco;
-		this.datacompra = datacompra;
-		this.horacompra = horacompra;
+		this.data = data;
+		this.hora = hora;
 	}
-	
-	public Vendas(int idcod_c, int cod_p, String cliente,String produto,
-			BigDecimal vlrtotal, BigDecimal vlrPago, BigDecimal troco, String datacompra,
-			String horacompra) {
-		this.idcod_c = idcod_c;
+
+	public Vendas(int id_c, int cod_p, String cliente, String produto, BigDecimal vTotal, BigDecimal vPago,
+			BigDecimal troco, String data, String hora) {
+		this.id_c = id_c;
 		this.cod_p = cod_p;
 		this.cliente = cliente;
 		this.produto = produto;
-		this.vlrtotal = vlrtotal;
-		this.vlrPago = vlrPago;
+		this.vTotal = vTotal;
+		this.vPago = vPago;
 		this.troco = troco;
-		this.datacompra = datacompra;
-		this.horacompra = horacompra;
+		this.data = data;
+		this.hora = hora;
 
 	}
 
-	public Vendas(int idcod_venda, String cliente, String produto,
-			BigDecimal vlrtotal, BigDecimal vlrPago,
-			BigDecimal troco, String datacompra, String horacompra) {
-		this.idcod_venda = idcod_venda;
+	public Vendas(int cod_v, String cliente, String produto, BigDecimal vTotal, BigDecimal vPago, BigDecimal troco,
+			String data, String hora) {
+		this.cod_v = cod_v;
 		this.cliente = cliente;
 		this.produto = produto;
-		this.vlrtotal = vlrtotal;
-		this.vlrPago = vlrPago;
+		this.vTotal = vTotal;
+		this.vPago = vPago;
 		this.troco = troco;
-		this.datacompra = datacompra;
-		this.horacompra = horacompra;
+		this.data = data;
+		this.hora = hora;
 	}
 
 }

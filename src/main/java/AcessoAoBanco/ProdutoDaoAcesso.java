@@ -18,8 +18,8 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 	public void inserir(Produto pd) {
 		PreparedStatement ps;
 		try {
-			ps = conexao
-					.prepareStatement("INSERT INTO PRODUTO (COD_BARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGE_LUCRO) VALUES (?, ?, ?, ?, ?, ?)");
+			ps = conexao.prepareStatement(
+					"INSERT INTO PRODUTO (COD_BARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGE_LUCRO) VALUES (?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, pd.getCodbarra());
 			ps.setString(2, pd.getCategoria());
 			ps.setString(3, pd.getDescricao());
@@ -29,7 +29,7 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 			ps.executeUpdate();
 			ps.close();
 
-			JOptionPane.showMessageDialog(null, "Produto: " + pd.getDescricao() + "inserido com sucesso!!!");
+			JOptionPane.showMessageDialog(null, "Produto: " + pd.getDescricao() + " inserido com sucesso!!!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -40,9 +40,8 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 
 		PreparedStatement ps;
 		try {
-			ps = conexao
-					.prepareStatement("UPDATE PRODUTO SET COD_BARRA = ?, CATEGORIA = ?, DESCRICAO = ?,"
-							+ " UNIDADE = ?, CUSTO = ?, MARGE_LUCRO = ? WHERE COD_P = " + p.getcod_p());
+			ps = conexao.prepareStatement("UPDATE PRODUTO SET COD_BARRA = ?, CATEGORIA = ?, DESCRICAO = ?,"
+					+ " UNIDADE = ?, CUSTO = ?, MARGE_LUCRO = ? WHERE COD_P = " + p.getcod_p());
 			ps.setInt(1, p.getCodbarra());
 			ps.setString(2, p.getCategoria());
 			ps.setString(3, p.getDescricao());
@@ -52,7 +51,7 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 			ps.executeUpdate();
 			ps.close();
 
-			JOptionPane.showMessageDialog(null, "Produto" + p.getDescricao() + "alterado com Sucesso!!!");
+			JOptionPane.showMessageDialog(null, "Produto: " + p.getDescricao() + " alterado com Sucesso!!!");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -67,11 +66,8 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 			ps = conexao.prepareStatement("DELETE FROM PRODUTO WHERE COD_P =" + id_p);
 			ps.executeUpdate();
 			ps.close();
-
-			JOptionPane.showMessageDialog(null, "Produto excluído com Sucesso!!!");
-
+			JOptionPane.showMessageDialog(null, "Produto excluido com sucesso.");
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
 
@@ -87,19 +83,14 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 					+ "FROM PRODUTO WHERE COD_P = " + id_p);
 			rs.next();
 			if (rs.getString("NOME") != null) {
-				p = new Produto(id_p , rs.getInt("COD_BARRA"),
-						rs.getString("CATEGORIA"),
-						rs.getString("DESCRICAO"), 
-						rs.getString("UNIDADE"), 
-						rs.getBigDecimal("CUSTO"),
-						rs.getBigDecimal("MARGE_LUCRO"));
+				p = new Produto(id_p, rs.getInt("COD_BARRA"), rs.getString("CATEGORIA"), rs.getString("DESCRICAO"),
+						rs.getString("UNIDADE"), rs.getBigDecimal("CUSTO"), rs.getBigDecimal("MARGE_LUCRO"));
 			}
 			rs.close();
 			st.close();
 			return p;
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null,
-					"Ocorreu um erro ao buscar o Produto desejado!\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao buscar o Produto desejado!\n" + e.getMessage());
 		}
 		return null;
 	}
@@ -113,15 +104,11 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery("SELECT COD_P, COD_BARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGE_LUCRO "
-					+ "FROM PRODUTO");
-			while(rs.next()){
-				lista.add(new Produto(rs.getInt("COD_P") , 
-						rs.getInt("COD_BARRA"),
-						rs.getString("CATEGORIA"),
-						rs.getString("DESCRICAO"),
-						rs.getString("UNIDADE"),
-						rs.getBigDecimal("CUSTO"),
+			rs = st.executeQuery(
+					"SELECT COD_P, COD_BARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGE_LUCRO " + "FROM PRODUTO");
+			while (rs.next()) {
+				lista.add(new Produto(rs.getInt("COD_P"), rs.getInt("COD_BARRA"), rs.getString("CATEGORIA"),
+						rs.getString("DESCRICAO"), rs.getString("UNIDADE"), rs.getBigDecimal("CUSTO"),
 						rs.getBigDecimal("MARGE_LUCRO")));
 			}
 			rs.close();

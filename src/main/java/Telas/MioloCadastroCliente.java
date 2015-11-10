@@ -351,7 +351,7 @@ public class MioloCadastroCliente extends JPanel {
 			limpar();
 			in = -1;
 		} else {
-			JOptionPane.showMessageDialog(null, "Escolha o cliente que deseja modificar!!!");
+			JOptionPane.showMessageDialog(null, " Escolha o cliente que deseja modificar!!! ");
 		}
 
 	}
