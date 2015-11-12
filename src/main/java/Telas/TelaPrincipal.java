@@ -241,12 +241,17 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.remove(telaCadastroProduto);
+				
 			}
 		};
 		telaCadastroProduto.setCloseAction(action);
 
 		tabbedPane.addTab("Cadastrar Produto ", telaCadastroProduto);
+		mostraUltima();
+	}
 
+	private void mostraUltima() {
+		tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
 	}
 
 	// Método para abrir a tela de cadastro de Usuarios
@@ -262,6 +267,7 @@ public class TelaPrincipal extends JFrame {
 
 		tabbedPane.addTab("Cadastrar Usuário ", telaCadastroUsuario);
 
+		mostraUltima();
 	}
 
 	// Método para abrir a tela de cadastro de Vendas
@@ -277,6 +283,7 @@ public class TelaPrincipal extends JFrame {
 
 		tabbedPane.addTab("Cadastrar Venda ", telaCadastroVendas);
 
+		mostraUltima();
 	}
 
 	// Método para abrir a tela de relatorio de clientes
@@ -292,6 +299,7 @@ public class TelaPrincipal extends JFrame {
 
 		tabbedPane.addTab("Relatório Cliente ", telaRelatorioCliente);
 
+		mostraUltima();
 	}
 
 	// Método para abrir a tela de relatorio de Produto
@@ -307,6 +315,7 @@ public class TelaPrincipal extends JFrame {
 
 		tabbedPane.addTab("Relatório Produto ", telaRelatorioProduto);
 
+		mostraUltima();
 	}
 
 	// Método para abrir a tela de relatorio de Vendas
@@ -322,6 +331,8 @@ public class TelaPrincipal extends JFrame {
 		telaRelatorioVenda.setCloseAction(action);
 
 		tabbedPane.addTab("Relatório Vendas ", telaRelatorioVenda);
+		
+		mostraUltima();
 	}
 
 }
