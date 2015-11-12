@@ -13,7 +13,9 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JTextField;
@@ -283,18 +285,23 @@ public class MioloCadastroVendas extends JPanel {
 					retornaVendas(v);
 					in = tablemiolovendas.getSelectedRow();
 				}
-				
+
 			}
 		});
 		tablemiolovendas.setFont(new Font("Consolas", Font.BOLD, 11));
 		scrollPane.setViewportView(tablemiolovendas);
 
 		listaVendas();
-		
+
 		mostraNosCombobox();
 		
+		gravaData();
+		
+		gravaHora();
+
 	}
 
+	// Metodo para gravar no banco
 	protected void Gravar() {
 		Vendas v = new Vendas(listacliente.get(cmbx_cliente.getSelectedIndex() - 1).getId(),
 				listaproduto.get(cmbx_produto.getSelectedIndex() - 1).getcod_p(),
@@ -311,6 +318,7 @@ public class MioloCadastroVendas extends JPanel {
 
 	}
 
+	// Método para Editar(Atualizar) dados ja cadastrados
 	protected void Editar() {
 
 		if (in > -1) {
@@ -334,6 +342,7 @@ public class MioloCadastroVendas extends JPanel {
 
 	}
 
+	// Metodo excluir
 	protected void Excluir() {
 
 		vda.excluir(tablemiolovendas.getSelectedRow());
@@ -341,6 +350,7 @@ public class MioloCadastroVendas extends JPanel {
 
 	}
 
+	// Metodo limpar textfields
 	private void limpar() {
 		txf_codvenda.setText("");
 		cmbx_cliente.setSelectedIndex(0);
@@ -351,6 +361,8 @@ public class MioloCadastroVendas extends JPanel {
 
 	}
 
+	// Metodo para ao dar dois cliques no mouse carregar dados da table para os
+	// textfields
 	public void retornaVendas(Vendas v) {
 
 		txf_codvenda.setText(String.valueOf(v.getCod_v()));
@@ -363,14 +375,15 @@ public class MioloCadastroVendas extends JPanel {
 		txf_horacompra.setText(v.getHora());
 
 	}
-	
-	private void mostraNosCombobox(){
+
+	// Metodo para popular os combobox com dados ja cadastrados
+	private void mostraNosCombobox() {
 		ClienteDaoAcesso cda = new ClienteDaoAcesso();
 		listacliente = cda.listar();
 		ProdutoDaoAcesso pda = new ProdutoDaoAcesso();
 		listaproduto = pda.listar();
 		int aux = 0;
-		
+
 		for (Cliente c : listacliente) {
 			if (aux == 0) {
 				aux = 1;
@@ -378,10 +391,10 @@ public class MioloCadastroVendas extends JPanel {
 			}
 			cmbx_cliente.addItem(c.getNome());
 		}
-		
+
 		aux = 0;
-		
-		for(Produto p : listaproduto){
+
+		for (Produto p : listaproduto) {
 			if (aux == 0) {
 				aux = 1;
 				cmbx_produto.addItem("");
@@ -389,7 +402,8 @@ public class MioloCadastroVendas extends JPanel {
 			cmbx_produto.addItem(p.getDescricao());
 		}
 	}
-	
+
+	// Método para listar as vendas
 	private void listaVendas() {
 
 		new Thread(new Runnable() {
@@ -402,5 +416,18 @@ public class MioloCadastroVendas extends JPanel {
 		}).start();
 	}
 
+	// Metodos para gravar data e hora das vendas
+
+	public void gravaData() {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		txf_datacompra.setText(sdf.format(new java.util.Date()));
+
+	}
+
+	public void gravaHora() {
+		Calendar hora = Calendar.getInstance();
+		txf_horacompra.setText(String.format("%1$tH:%tM:%1$tS", hora));
+	}
 
 }

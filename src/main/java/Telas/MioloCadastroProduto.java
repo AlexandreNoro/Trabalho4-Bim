@@ -269,6 +269,7 @@ public class MioloCadastroProduto extends JPanel {
 		listaProduto();
 	}
 
+	// metodo para listar produtos cadastrados
 	private void listaProduto() {
 		new Thread(new Runnable() {
 
@@ -281,6 +282,7 @@ public class MioloCadastroProduto extends JPanel {
 
 	}
 
+	// metodos gravar(cadastrar) produtos
 	protected void Gravar() {
 
 		Produto p = new Produto(Integer.parseInt(txfCodigo.getText()), txfCategoria.getText(), txfDescricao.getText(),
@@ -294,6 +296,7 @@ public class MioloCadastroProduto extends JPanel {
 
 	}
 
+	// Metodo Editar(atualizar) produtos ja cadastrados
 	protected void Editar() {
 
 		if (in > -1) {
@@ -312,6 +315,7 @@ public class MioloCadastroProduto extends JPanel {
 
 	}
 
+	// Metodo para excluir(deletar) produto
 	protected void Excluir() {
 
 		pda.excluir(tablemioloproduto.getSelectedRow());
@@ -319,6 +323,7 @@ public class MioloCadastroProduto extends JPanel {
 
 	}
 
+	// Metodo limpar textfields
 	private void limpar() {
 
 		txfId.setText("");
@@ -330,6 +335,8 @@ public class MioloCadastroProduto extends JPanel {
 		txflucro.setText("");
 	}
 
+	// Metodo para ao dar dois cliques no mouse carregar dados da table para os
+	// textfields
 	public void retornaProduto(Produto p) {
 		txfId.setText(String.valueOf(p.getcod_p()));
 		txfCodigo.setText(String.valueOf(p.getCodbarra()));

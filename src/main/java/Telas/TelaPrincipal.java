@@ -7,6 +7,9 @@ import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Relatorios.RelatorioVenda;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -144,11 +147,11 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mntmRelatrioVenda = new JMenuItem("Relat\u00F3rio Venda");
 		mntmRelatrioVenda.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 14));
 		mntmRelatrioVenda.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				abreRelatorioVendas();
-				
+
 			}
 		});
 		mnRelatrios.add(mntmRelatrioVenda);
@@ -179,8 +182,6 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
 
-	
-
 	protected void block() {
 		setGlassPane(glass);
 		glass.setVisible(true);
@@ -200,7 +201,8 @@ public class TelaPrincipal extends JFrame {
 			}
 		}).start();
 	}
-
+	
+	//Metodo de acao do botao de bloquear tela 
 	private void blockParaLogin() {
 		Runnable acaoOk = () -> {
 			glass.setVisible(false);
@@ -216,6 +218,8 @@ public class TelaPrincipal extends JFrame {
 		glass.setVisible(true);
 	}
 
+
+	
 	// Método para abrir a tela de cadastro de Clientes
 	private void abrirTela() {
 		TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
@@ -260,6 +264,7 @@ public class TelaPrincipal extends JFrame {
 
 	}
 
+	// Método para abrir a tela de cadastro de Vendas
 	protected void abrirTelaVendas() {
 		TelaCadastroVendas telaCadastroVendas = new TelaCadastroVendas();
 		ActionListener action = new ActionListener() {
@@ -274,6 +279,7 @@ public class TelaPrincipal extends JFrame {
 
 	}
 
+	// Método para abrir a tela de relatorio de clientes
 	protected void abreRelatorioCliente() {
 		TelaRelatorioCliente telaRelatorioCliente = new TelaRelatorioCliente();
 		ActionListener action = new ActionListener() {
@@ -288,6 +294,7 @@ public class TelaPrincipal extends JFrame {
 
 	}
 
+	// Método para abrir a tela de relatorio de Produto
 	protected void abreRelatorioProduto() {
 		TelaRelatorioProduto telaRelatorioProduto = new TelaRelatorioProduto();
 		ActionListener action = new ActionListener() {
@@ -301,10 +308,10 @@ public class TelaPrincipal extends JFrame {
 		tabbedPane.addTab("Relatório Produto ", telaRelatorioProduto);
 
 	}
-	
-	
+
+	// Método para abrir a tela de relatorio de Vendas
 	protected void abreRelatorioVendas() {
-		
+
 		TelaRelatorioVenda telaRelatorioVenda = new TelaRelatorioVenda();
 		ActionListener action = new ActionListener() {
 			@Override
@@ -315,7 +322,6 @@ public class TelaPrincipal extends JFrame {
 		telaRelatorioVenda.setCloseAction(action);
 
 		tabbedPane.addTab("Relatório Vendas ", telaRelatorioVenda);
-		
 	}
 
 }

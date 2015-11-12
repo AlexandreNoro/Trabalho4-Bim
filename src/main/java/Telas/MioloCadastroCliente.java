@@ -280,24 +280,21 @@ public class MioloCadastroCliente extends JPanel {
 		add(scrollPane, gbc_scrollPane);
 
 		tablemiolocliente = new JTable();
-		
+
 		tablemiolocliente.addMouseListener(new MouseAdapter() {
-			
-			
+
 			@Override
 			public void mouseClicked(MouseEvent me) {
 				if (me.getClickCount() == 2) {
-						Cliente c = (Cliente) listacliente.get(tablemiolocliente.getSelectedRow());
-						
-						retornaCliente(c);
-						
-						in = tablemiolocliente.getSelectedRow();
+					Cliente c = (Cliente) listacliente.get(tablemiolocliente.getSelectedRow());
+
+					retornaCliente(c);
+
+					in = tablemiolocliente.getSelectedRow();
 				}
 			}
 		});
-		
-		
-		
+
 		tablemiolocliente.setFont(new Font("Consolas", Font.BOLD, 11));
 		scrollPane.setViewportView(tablemiolocliente);
 
@@ -307,6 +304,7 @@ public class MioloCadastroCliente extends JPanel {
 
 	}
 
+	// Lista os clientes cadastrados
 	private void listarClientes() {
 		new Thread(new Runnable() {
 
@@ -319,6 +317,7 @@ public class MioloCadastroCliente extends JPanel {
 
 	}
 
+	// metodo que popula o combobox de estado e genero pré cadastrados nas enums
 	private void mostrarNoComboBox() {
 		for (Estado e : Estado.values())
 			cmbxEstado.addItem(e.name());
@@ -326,6 +325,7 @@ public class MioloCadastroCliente extends JPanel {
 			cmbxGenero.addItem(g.name());
 	}
 
+	// Metodo para gravar(cadastrar) clientes
 	protected void Gravar() {
 
 		Cliente c = new Cliente(txfNome.getText(), txftelefone.getText(), txfendereco.getText(), txfcidade.getText(),
@@ -338,6 +338,7 @@ public class MioloCadastroCliente extends JPanel {
 		limpar();
 	}
 
+	// Metodo Editar(atualizar) clientes ja cadastrados
 	protected void Editar() {
 
 		if (in > -1) {
@@ -356,6 +357,7 @@ public class MioloCadastroCliente extends JPanel {
 
 	}
 
+	// Metodo excluir(deletar) cliente
 	protected void Excluir() {
 
 		cda.excluir(listacliente.get(tablemiolocliente.getSelectedRow()).getId());
@@ -363,6 +365,7 @@ public class MioloCadastroCliente extends JPanel {
 
 	}
 
+	// Metodo limpar textfields
 	private void limpar() {
 
 		txfId.setText("");
@@ -373,11 +376,12 @@ public class MioloCadastroCliente extends JPanel {
 		cmbxEstado.setSelectedIndex(0);
 		txfEmail.setText("");
 		cmbxGenero.setSelectedIndex(0);
-		
 
 	}
-	
-	public void retornaCliente(Cliente c){
+
+	// Metodo para ao dar dois cliques no mouse carregar dados da table para os
+	// textfields
+	public void retornaCliente(Cliente c) {
 		txfId.setText(String.valueOf(c.getId()));
 		txfNome.setText(c.getNome());
 		txftelefone.setText(c.getTelefone());
@@ -386,8 +390,7 @@ public class MioloCadastroCliente extends JPanel {
 		cmbxEstado.setSelectedItem(c.getEstado().name());
 		txfEmail.setText(c.getEmail());
 		cmbxGenero.setSelectedItem(c.getGenero().name());
-		
+
 	}
-	
 
 }

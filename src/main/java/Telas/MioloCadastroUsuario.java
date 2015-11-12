@@ -207,6 +207,7 @@ public class MioloCadastroUsuario extends JPanel {
 
 	}
 
+	// metodos gravar(cadastrar) usuario
 	protected void Gravar() {
 
 		Usuario u = new Usuario();
@@ -220,6 +221,7 @@ public class MioloCadastroUsuario extends JPanel {
 
 	}
 
+	// metodo Editar(atualizar) dados ja cadastrados
 	protected void Editar() {
 
 		if (in > -1) {
@@ -236,6 +238,7 @@ public class MioloCadastroUsuario extends JPanel {
 
 	}
 
+	// metodo excluir(deletar) usuarios cadastrados
 	protected void Excluir() {
 
 		user.excluir(tablemiolousuario.getSelectedRow());
@@ -243,6 +246,7 @@ public class MioloCadastroUsuario extends JPanel {
 
 	}
 
+	// metodo limpar textfields
 	private void limpar() {
 
 		txfId.setText("");
@@ -252,6 +256,8 @@ public class MioloCadastroUsuario extends JPanel {
 
 	}
 
+	// Metodo para ao dar dois cliques no mouse carregar dados da table para os
+	// textfields
 	protected void retornaUsuario(Usuario u) {
 
 		txfId.setText(String.valueOf(u.getId()));
@@ -261,6 +267,7 @@ public class MioloCadastroUsuario extends JPanel {
 
 	}
 
+	// metodo listar usuarios
 	private void listaUsuario() {
 
 		new Thread(new Runnable() {
