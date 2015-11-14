@@ -110,7 +110,6 @@ public class PainelLogin extends JPanel {
 
 			if (txf_user.getText().equals(log.rs.getString("cliente"))
 					&& txf_senha.getText().equals(log.rs.getString("senha"))) {
-				JOptionPane.showMessageDialog(null, "Tudo Ok. Podemos continuar!!");
 				acaoOk.run();
 			}
 		} catch (SQLException e) {
