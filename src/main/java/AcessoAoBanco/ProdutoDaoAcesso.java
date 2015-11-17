@@ -88,7 +88,7 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 			rs = st.executeQuery("SELECT COD_BARRA, CATEGORIA, DESCRICAO, UNIDADE, CUSTO, MARGE_LUCRO "
 					+ "FROM PRODUTO WHERE COD_P = " + id_p);
 			rs.next();
-			if (rs.getString("NOME") != null) {
+			if (rs.getString("COD_BARRA") != null) {
 				p = new Produto(id_p, rs.getInt("COD_BARRA"), rs.getString("CATEGORIA"), rs.getString("DESCRICAO"),
 						rs.getString("UNIDADE"), rs.getBigDecimal("CUSTO"), rs.getBigDecimal("MARGE_LUCRO"));
 			}
