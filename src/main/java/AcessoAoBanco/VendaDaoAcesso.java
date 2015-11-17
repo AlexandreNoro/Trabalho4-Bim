@@ -75,10 +75,10 @@ public class VendaDaoAcesso implements AcessoDao<Vendas> {
 
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery("SELECT ID_C, CLIENTE, COD_P," + "PRODUTO, VTOTAL, VPAGAMENTO, TROCO, DATA, HORA"
+			rs = st.executeQuery("SELECT ID_C, CLIENTE, COD_P," + "PRODUTO, VTOTAL, VPAGAMENTO, TROCO, DATA, HORA "
 					+ "FROM venda WHERE COD_V = " + idcod_v);
 			rs.next();
-			if (rs.getString("CLIENTE") != null) {
+			if (rs.getString("ID_C") != null) {
 				v = new Vendas(rs.getInt("ID_C"), rs.getInt("COD_P"), rs.getString("CLIENTE"), rs.getString("PRODUTO"),
 						rs.getBigDecimal("VTOTAL"), rs.getBigDecimal("VPAGAMENTO"), rs.getBigDecimal("TROCO"),
 						rs.getString("DATA"), rs.getString("HORA"));

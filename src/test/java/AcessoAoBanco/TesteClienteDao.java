@@ -30,7 +30,7 @@ public class TesteClienteDao {
 	@Test
 	public void testExcluir() {
 		new ClienteDaoAcesso().inserir(new Cliente("Noro", "04588179098","Av.Curitiba", "Santa Helena", Estado.PR, "xando10.noro@gmail.com",Genero.M));
-		assertEquals("Erro ao deletar cliente",1 , new ClienteDaoAcesso().excluir(1));
+		assertEquals("Erro ao excluir cliente",1 , new ClienteDaoAcesso().excluir(1));
 		new ResetConexoesDao().reset("CLIENTE");
 
 	}

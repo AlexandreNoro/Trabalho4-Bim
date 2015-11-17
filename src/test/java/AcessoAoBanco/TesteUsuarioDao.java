@@ -41,7 +41,7 @@ public class TesteUsuarioDao {
 		u.setCliente("teste");
 		u.setSenha("teste");
 		new UsuarioDaoAcesso().inserir(u);
-		assertEquals("Erro ao deletar dados no banco", 1, new UsuarioDaoAcesso().excluir(2));
+		assertEquals("Erro ao excluir dados no banco", 1, new UsuarioDaoAcesso().excluir(2));
 		new ResetConexoesDao().reset("USUARIO");
 
 	}

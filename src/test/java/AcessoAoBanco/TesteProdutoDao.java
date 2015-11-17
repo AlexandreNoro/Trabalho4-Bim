@@ -31,7 +31,7 @@ public class TesteProdutoDao {
 	public void testExcluir() {
 		new ProdutoDaoAcesso().inserir(
 				new Produto(1, 23, "GAME", "FUTEBOL", "UNID", BigDecimal.valueOf(29.4), BigDecimal.valueOf(20.0)));
-		assertEquals("Erro ao inserir dados no banco", 1, new ProdutoDaoAcesso().excluir(1));
+		assertEquals("Erro ao excluir dados no banco", 1, new ProdutoDaoAcesso().excluir(1));
 		new ResetConexoesDao().reset("PRODUTO");
 
 	}
