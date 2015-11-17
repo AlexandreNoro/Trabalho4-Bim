@@ -32,11 +32,13 @@ public class ConectarBanco {
 		return null;
 	}
 
-	public void fechaConexao() {
+	public boolean fechaConexao() {
 		try {
 			conexao.close();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 
