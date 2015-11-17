@@ -19,7 +19,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 
 	// Método inserir
-	public void inserir(Cliente c) {
+	public int inserir(Cliente c) {
 
 		PreparedStatement ps;
 		try {
@@ -32,18 +32,21 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 			ps.setString(5, c.getEstado().name());
 			ps.setString(6, c.getEmail());
 			ps.setString(7, c.getGenero().name());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome() + " inserido com sucesso!!!");
+			
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 
 	}
 
 	// Método atualizar
-	public void atualizar(Cliente c) {
+	public int atualizar(Cliente c) {
 
 		PreparedStatement ps;
 		try {
@@ -57,29 +60,32 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 			ps.setString(5, c.getEstado().name());
 			ps.setString(6, c.getEmail());
 			ps.setString(7, c.getGenero().name());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome() + " alterado com Sucesso!!!");
-
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 
 	// Método excluir
-	public void excluir(int id) {
+	public int excluir(int id) {
 		PreparedStatement ps = null;
 		try {
 			ps = conexao.prepareStatement("DELETE FROM CLIENTE WHERE ID_C =" + id);
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Cliente excluído com Sucesso!!!");
-
+			return res;
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+			
+			return 0;
 		}
 
 	}

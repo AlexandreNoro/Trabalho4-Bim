@@ -16,7 +16,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 
 	//Método inserir 
-	public void inserir(Usuario user) {
+	public int inserir(Usuario user) {
 
 		PreparedStatement ps;
 		try {
@@ -24,18 +24,20 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 			ps.setInt(1, user.getIdCliente());
 			ps.setString(2, user.getCliente());
 			ps.setString(3, user.getSenha());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Usuário: " + user.getCliente() + " inserido com sucesso!!!");
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 
 	}
 
 	//Método de atualizar 
-	public void atualizar(Usuario user) {
+	public int atualizar(Usuario user) {
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement("UPDATE USUARIO SET ID_C = ?, CLIENTE = ?, SENHA =? WHERE ID_U"
@@ -43,31 +45,34 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 			ps.setInt(1, user.getIdCliente());
 			ps.setString(2, user.getCliente());
 			ps.setString(3, user.getSenha());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Usuário: " + user.getCliente() + " alterado com Sucesso!!!");
-
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 
 	}
 	
 	//Método excluir
-	public void excluir(int user) {
+	public int excluir(int user) {
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement("DELETE FROM USUARIO WHERE ID_C = "
 					+ user);
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Usuário excluído com Sucesso!!!");
-
+			return res;
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+			
+			return 0;
 		}
 
 	}
@@ -130,7 +135,6 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 			}
 
 		} catch (Exception e) {
-		//	JOptionPane.showMessageDialog(null, "Erro ao listar Usuários!!!/n" + e.getMessage());
 		e.printStackTrace();
 		}
 		return null;

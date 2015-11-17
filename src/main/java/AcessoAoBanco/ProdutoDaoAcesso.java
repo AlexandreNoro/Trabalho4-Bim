@@ -15,7 +15,7 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 
-	public void inserir(Produto pd) {
+	public int inserir(Produto pd) {
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement(
@@ -26,17 +26,20 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 			ps.setString(4, pd.getUnidade());
 			ps.setBigDecimal(5, pd.getCusto());
 			ps.setBigDecimal(6, pd.getMargemlucro());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Produto: " + pd.getDescricao() + " inserido com sucesso!!!");
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
+			return 0;
 		}
 
 	}
 
-	public void atualizar(Produto p) {
+	public int atualizar(Produto p) {
 
 		PreparedStatement ps;
 		try {
@@ -48,27 +51,30 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 			ps.setString(4, p.getUnidade());
 			ps.setBigDecimal(5, p.getCusto());
 			ps.setBigDecimal(6, p.getMargemlucro());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Produto: " + p.getDescricao() + " alterado com Sucesso!!!");
-
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 
 	}
 
-	public void excluir(int id_p) {
+	public int excluir(int id_p) {
 
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement("DELETE FROM PRODUTO WHERE COD_P =" + id_p);
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Produto excluido com sucesso.");
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 
 	}

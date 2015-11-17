@@ -15,7 +15,7 @@ public class VendaDaoAcesso implements AcessoDao<Vendas> {
 
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 
-	public void inserir(Vendas v) {
+	public int inserir(Vendas v) {
 
 		PreparedStatement ps;
 		try {
@@ -30,34 +30,39 @@ public class VendaDaoAcesso implements AcessoDao<Vendas> {
 			ps.setBigDecimal(7, v.getTroco());
 			ps.setString(8, v.getData());
 			ps.setString(9, v.getHora());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			if (v.getCod_v() == 0) {
 				JOptionPane.showMessageDialog(null, "Produto " + v.getProduto() + " vendido com Sucesso");
+				return res;
 			} else {
 				JOptionPane.showMessageDialog(null, "Venda Atualizada com Sucesso");
+				return res;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
 
 	}
 
-	public void atualizar(Vendas v) {
-
+	public int atualizar(Vendas v) {
+		return 0;
 	}
 
-	public void excluir(int idcod_v) {
+	public int excluir(int idcod_v) {
 
 		PreparedStatement ps;
 
 		try {
 			ps = conexao.prepareStatement("DELETE FROM VENDA WHERE COD_V =" + idcod_v);
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Requisição de venda excluida com sucesso");
+			return res;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
 
 	}
