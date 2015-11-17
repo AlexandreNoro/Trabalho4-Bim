@@ -40,7 +40,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 	public int atualizar(Usuario user) {
 		PreparedStatement ps;
 		try {
-			ps = conexao.prepareStatement("UPDATE USUARIO SET ID_C = ?, CLIENTE = ?, SENHA =? WHERE ID_U"
+			ps = conexao.prepareStatement("UPDATE USUARIO SET ID_C = ?, CLIENTE = ?, SENHA =? WHERE ID_U = "
 					+ user.getId());
 			ps.setInt(1, user.getIdCliente());
 			ps.setString(2, user.getCliente());

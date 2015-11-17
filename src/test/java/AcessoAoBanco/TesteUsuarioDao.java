@@ -4,41 +4,73 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import br.univel.cadastroCliente.Usuario;
+
 public class TesteUsuarioDao {
 
 	@Test
 	public void testInserir() {
-		fail("Not yet implemented");
+		Usuario u = new Usuario();
+		u.setId(2);
+		u.setIdCliente(2);
+		u.setCliente("teste");
+		u.setSenha("teste");
+		assertEquals("Erro ao inserir dados no banco", 1, new UsuarioDaoAcesso().inserir(u));
+		new ResetConexoesDao().reset("USUARIO");
 	}
 
 	@Test
 	public void testAtualizar() {
-		fail("Not yet implemented");
+		Usuario u = new Usuario();
+		u.setId(2);
+		u.setIdCliente(2);
+		u.setCliente("teste");
+		u.setSenha("teste");
+		new UsuarioDaoAcesso().inserir(u);
+		u.setCliente("teste1");
+		u.setSenha("teste1");
+		assertEquals("Erro ao atualizar dados no banco", 1, new UsuarioDaoAcesso().atualizar(u));
+		new ResetConexoesDao().reset("USUARIO");
 	}
 
 	@Test
 	public void testExcluir() {
-		fail("Not yet implemented");
+		Usuario u = new Usuario();
+		u.setId(2);
+		u.setIdCliente(2);
+		u.setCliente("teste");
+		u.setSenha("teste");
+		new UsuarioDaoAcesso().inserir(u);
+		assertEquals("Erro ao deletar dados no banco", 1, new UsuarioDaoAcesso().excluir(2));
+		new ResetConexoesDao().reset("USUARIO");
+
 	}
 
 	@Test
 	public void testBuscar() {
-		fail("Not yet implemented");
+		assertNotNull("Erro ao buscar usuário", new UsuarioDaoAcesso().buscar(1));
 	}
 
 	@Test
 	public void testListar() {
-		fail("Not yet implemented");
+		assertNotNull("Erro ao listar usuário", new UsuarioDaoAcesso().listar());
 	}
 
 	@Test
 	public void testGetConexao() {
-		fail("Not yet implemented");
+		assertNotNull("Erro ao retornar conexão", new UsuarioDaoAcesso().getConexao());
 	}
 
 	@Test
 	public void testTestar() {
-		fail("Not yet implemented");
+		Usuario u = new Usuario();
+		u.setId(2);
+		u.setIdCliente(2);
+		u.setCliente("teste");
+		u.setSenha("teste");
+		new UsuarioDaoAcesso().inserir(u);
+		assertTrue("Erro ao deletar dados no banco", new UsuarioDaoAcesso().Testar("teste", "teste"));
+		new ResetConexoesDao().reset("USUARIO");
 	}
 
 }
