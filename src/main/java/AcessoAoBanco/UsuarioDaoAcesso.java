@@ -15,7 +15,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 
-	//Método inserir 
+	//Método inserir usuario
 	public int inserir(Usuario user) {
 
 		PreparedStatement ps;
@@ -36,7 +36,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 
 	}
 
-	//Método de atualizar 
+	//Método de atualizar usuario
 	public int atualizar(Usuario user) {
 		PreparedStatement ps;
 		try {
@@ -57,7 +57,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 
 	}
 	
-	//Método excluir
+	//Método excluir usuario
 	public int excluir(int user) {
 		PreparedStatement ps;
 		try {
@@ -78,7 +78,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 	}
 	
 	
-	//Método de busca
+	//Método que realiza a busca do Usuario
 	public Usuario buscar(int user) {
 		Statement st = null;
 		ResultSet rs = null;
@@ -107,7 +107,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 	}
 	
 	
-	//Método para listar
+	//Método para listar Usuario
 	public List<Usuario> listar() {
 
 		Statement st = null;
@@ -139,7 +139,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 		}
 		return null;
 	}
-
+	//Metodo que retorna a conexao
 	public Connection getConexao() {
 		return conexao;
 

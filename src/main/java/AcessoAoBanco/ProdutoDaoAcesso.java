@@ -14,7 +14,7 @@ import br.univel.cadastroCliente.Produto;
 public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
-
+	// Método inserir Produto
 	public int inserir(Produto pd) {
 		PreparedStatement ps;
 		try {
@@ -38,7 +38,7 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 		}
 
 	}
-
+	// Método atualizar Produto 
 	public int atualizar(Produto p) {
 
 		PreparedStatement ps;
@@ -62,7 +62,7 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 		}
 
 	}
-
+	// Método excluir Produto
 	public int excluir(int id_p) {
 
 		PreparedStatement ps;
@@ -78,7 +78,7 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 		}
 
 	}
-
+	//Método que faz a busca pelos produto cadastrados
 	public Produto buscar(int id_p) {
 		Statement st = null;
 		ResultSet rs = null;
@@ -100,7 +100,8 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 		}
 		return null;
 	}
-
+	
+	// Método que lista os produtos cadastrados
 	public List<Produto> listar() {
 
 		Statement st = null;
@@ -126,7 +127,7 @@ public class ProdutoDaoAcesso implements AcessoDao<Produto> {
 		}
 		return null;
 	}
-
+	//Metodo que retorna conexao
 	public Connection getConexao() {
 		return conexao;
 

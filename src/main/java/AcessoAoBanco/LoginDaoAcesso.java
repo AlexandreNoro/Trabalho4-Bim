@@ -13,12 +13,13 @@ public class LoginDaoAcesso {
 	public Statement st;
 	public ResultSet rs;
 	
-	
+	//Dados de conexao ao banco
 	String driverName = "com.mysql.jdbc.Driver";
 	String url = "jdbc:mysql://localhost/trabalho4bim";
 	String user = "root";
 	String pass = "142536";
 	
+	//Abre conexão com o banco de dados
 	public void abreConexao(){
 		try {
 			Class.forName(driverName);

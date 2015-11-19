@@ -162,7 +162,7 @@ public class RelatorioProduto extends JPanel {
 		preencherCMBX();
 
 	}
-
+	//Metodo que preenche o combobox com as categorias cadastradas
 	private void preencherCMBX() {
 		for (int i = 0; i < listaproduto.size(); i++) {
 			int in = 0;
@@ -187,7 +187,7 @@ public class RelatorioProduto extends JPanel {
 		}
 
 	}
-
+	//Metodo para criar arquivo pdf
 	protected void gerarpdf() {
 		TableModel tabelamodelo = getTabelaProduto();
 
@@ -209,7 +209,7 @@ public class RelatorioProduto extends JPanel {
 		}
 
 	}
-	
+	//Metodo que retorna na table a lista de produtos cadastrados
 	private TableModel getTabelaProduto() {
 		String[] columnNames = { "cod_p", "cod_barra", "categoria", "descricao", "unidade", "custo", "marge_lucro" };
 		

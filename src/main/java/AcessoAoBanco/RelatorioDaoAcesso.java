@@ -18,6 +18,7 @@ public class RelatorioDaoAcesso {
 	private Statement st = null;
 	private ResultSet rs = null;
 	
+	//Metodo que faz o retorno de uma lista do relatório do Cliente
 	public List<Cliente> relatorioCliente(String rltc) {
 		List<Cliente> lista = new ArrayList<Cliente>();
 		try {
@@ -41,7 +42,7 @@ public class RelatorioDaoAcesso {
 		return null;
 	}
 	
-	
+	//Metodo que faz o retorno de uma lista do relatório do Produto
 	public List<Produto> relatorioProduto(String rltp) {
 		List<Produto> lista = new ArrayList<Produto>();
 		try {
@@ -65,7 +66,7 @@ public class RelatorioDaoAcesso {
 		}
 		return null;
 	}
-	
+	//Metodo que faz o retorno de uma lista do relatório de Venda
 	public List<Vendas> relatorioVendas(StringBuilder rltv) {
 		List<Vendas> lista = new ArrayList<Vendas>();
 		try {
@@ -89,7 +90,7 @@ public class RelatorioDaoAcesso {
 		}
 		return null;
 	}
-	
+	//Metodo que faz o retorno de uma lista do relatório da Categoria do Produto
 	public List<String> listarCategoriaProduto() {
 		List<String> lista = new ArrayList<String>();
 		try {
@@ -107,7 +108,7 @@ public class RelatorioDaoAcesso {
 		return null;
 	}
 	
-	
+	//Método que retorna a conexao
 	public Connection getConexao() {
 		return conexao;
 	}

@@ -18,7 +18,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 
-	// Método inserir
+	// Método inserir Cliente 
 	public int inserir(Cliente c) {
 
 		PreparedStatement ps;
@@ -45,7 +45,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 
 	}
 
-	// Método atualizar
+	// Método atualizar Cliente
 	public int atualizar(Cliente c) {
 
 		PreparedStatement ps;
@@ -71,7 +71,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 		}
 	}
 
-	// Método excluir
+	// Método excluir Cliente
 	public int excluir(int id) {
 		PreparedStatement ps = null;
 		try {
@@ -90,7 +90,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 
 	}
 
-	// Método para buscar
+	// Método para buscar Cliente
 	public Cliente buscar(int id) {
 
 		Statement st = null;
@@ -115,7 +115,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 		return null;
 	}
 
-	// Método para listar
+	// Método para listar os Clientes
 	public List<Cliente> listar() {
 		Statement st = null;
 		ResultSet rs = null;

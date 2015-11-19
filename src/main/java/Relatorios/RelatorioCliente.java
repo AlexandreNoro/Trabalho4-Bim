@@ -43,8 +43,9 @@ public class RelatorioCliente extends JPanel {
 	private JTable tablecliente;
 	private JComboBox<String> cmbx_estado;
 	private JComboBox<String> cmbx_cidade;
-
+								//Nome do arquivo pdf gerado
 	private static String ARQ_PDF = "relatorio de cliente.pdf";
+						//Caminho de onde está o arquivo jasper
 	private String arq = "C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources\\RelatorioCliente.Jasper";
 	private List<Cliente> listacliente;
 	private TabelaCliente tabelaCliente;
@@ -170,7 +171,7 @@ public class RelatorioCliente extends JPanel {
 	 * MÉTODOS
 	 */
 	
-	//gerar pdf
+	//Método que cria um pdf
 	protected void GerarPdf() {
 
 		TableModel tabelamodelo = getTabelaProduto();
@@ -195,7 +196,7 @@ public class RelatorioCliente extends JPanel {
 		}
 
 	}
-
+	//Metodo que retorna na table a lista de cliente cadastrados
 	private TableModel getTabelaProduto() {
 		String[] columnNames = { "id_c", "nome", "telefone", "endereco", "cidade", "estado", "email", "genero" };
 		
@@ -217,7 +218,7 @@ public class RelatorioCliente extends JPanel {
 
 	}
 
-
+	//Metodo para filtrar por estado e por cidade
 	protected void filtrarEstCid() {
 		if (cmbx_cidade.getSelectedItem() != "" && cmbx_estado.getSelectedItem() != "") {
 			StringBuilder filtracomando = new StringBuilder();
@@ -232,7 +233,8 @@ public class RelatorioCliente extends JPanel {
 			JOptionPane.showMessageDialog(null, "Escolha a Cidade e o Estado que deseja Filtrar");
 		}
 	}
-
+	
+	//Método que carrega a table na tela
 	private void carregartabela() {
 		tabelaCliente = new TabelaCliente();
 		listacliente = tabelaCliente.listar();
@@ -244,7 +246,7 @@ public class RelatorioCliente extends JPanel {
 		
 	}
 	
-	
+	//Metodo que traz no combobox estados e cidades 
 	private void mostradados() {
 		int in = 0;
 		
