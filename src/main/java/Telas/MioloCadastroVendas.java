@@ -256,7 +256,7 @@ public class MioloCadastroVendas extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Excluir();
-
+				limpar();
 			}
 		});
 		btnExcluir.setFont(new Font("Arial Narrow", Font.BOLD, 11));
@@ -294,9 +294,9 @@ public class MioloCadastroVendas extends JPanel {
 		listaVendas();
 
 		mostraNosCombobox();
-		
+
 		gravaData();
-		
+
 		gravaHora();
 
 	}

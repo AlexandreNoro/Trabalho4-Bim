@@ -230,7 +230,7 @@ public class MioloCadastroProduto extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Excluir();
-
+				limpar();
 			}
 		});
 		btnExcluir.setFont(new Font("Arial Narrow", Font.BOLD, 11));

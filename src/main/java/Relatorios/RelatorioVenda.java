@@ -51,9 +51,9 @@ public class RelatorioVenda extends JPanel {
 	private JComboBox<Object> cbx_dia;
 
 	private TabelaVendas tbModelVenda;
-								//Nome do arquivo pdf gerado
+	// Nome do arquivo pdf gerado
 	private static String ARQ_PDF = "relatorio de Venda.pdf";
-								//Caminho de onde está o arquivo jasper
+	// Caminho de onde está o arquivo jasper
 	private String arq = "C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources\\RelatorioVenda.jasper";
 
 	/**
@@ -199,7 +199,8 @@ public class RelatorioVenda extends JPanel {
 		carregarCBXCateg();
 
 	}
-	//Carrega table na tela
+
+	// Carrega table na tela
 	private void modeloTable() {
 		tbModelVenda = new TabelaVendas();
 		listaVenda = tbModelVenda.listar();
@@ -244,7 +245,8 @@ public class RelatorioVenda extends JPanel {
 				cbx_catProd.addItem(lct.get(i).toString());
 		}
 	}
-	//Cria o arquivo pdf
+
+	// Cria o arquivo pdf
 	public void SimpleReportDiretoPdf() {
 
 		TableModel tableModel = getTableModelProduto();
@@ -275,7 +277,8 @@ public class RelatorioVenda extends JPanel {
 	// gera uma table com os dados presentes na tela
 
 	private TableModel getTableModelProduto() {
-		String[] columnNames = { "cod_v", "id_c", "cliente", "cod_p", "produto", "vtotal", "vpagamento", "troco", "data", "hora" };
+		String[] columnNames = { "cod_v", "id_c", "cliente", "cod_p", "produto", "vtotal", "vpagamento", "troco",
+				"data", "hora" };
 
 		Object[][] data = new Object[listaVenda.size()][10];
 		for (int i = 0; i < listaVenda.size(); i++) {

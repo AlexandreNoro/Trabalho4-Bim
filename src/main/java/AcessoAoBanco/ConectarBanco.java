@@ -2,23 +2,25 @@ package AcessoAoBanco;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+
 //Classe de Conexao com o banco de dados
 public class ConectarBanco {
 
 	private Connection conexao;
 
 	private static ConectarBanco instanciar;
-	
-	//Construtor vazio
+
+	// Construtor vazio
 	private ConectarBanco() {
 	}
-	
+
 	public static ConectarBanco getInstace() {
 		if (instanciar == null)
 			return instanciar = new ConectarBanco();
 		return instanciar;
 	}
-	//Método que abre conexao com o banco de dados
+
+	// Método que abre conexao com o banco de dados
 	public Connection abreConexao() {
 		String driverName = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost/trabalho4bim";
@@ -32,8 +34,8 @@ public class ConectarBanco {
 		}
 		return null;
 	}
-	
-	//Metodo que fecha conexao com o banco de dados
+
+	// Metodo que fecha conexao com o banco de dados
 	public boolean fechaConexao() {
 		try {
 			conexao.close();

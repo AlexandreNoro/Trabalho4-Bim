@@ -43,9 +43,9 @@ public class RelatorioCliente extends JPanel {
 	private JTable tablecliente;
 	private JComboBox<String> cmbx_estado;
 	private JComboBox<String> cmbx_cidade;
-								//Nome do arquivo pdf gerado
+	// Nome do arquivo pdf gerado
 	private static String ARQ_PDF = "relatorio de cliente.pdf";
-						//Caminho de onde está o arquivo jasper
+	// Caminho de onde está o arquivo jasper
 	private String arq = "C:\\Users\\Alexandre H. Noro\\git\\Trabalho4-Bim\\src\\main\\resources\\RelatorioCliente.Jasper";
 	private List<Cliente> listacliente;
 	private TabelaCliente tabelaCliente;
@@ -170,8 +170,8 @@ public class RelatorioCliente extends JPanel {
 	 * 
 	 * MÉTODOS
 	 */
-	
-	//Método que cria um pdf
+
+	// Método que cria um pdf
 	protected void GerarPdf() {
 
 		TableModel tabelamodelo = getTabelaProduto();
@@ -183,24 +183,22 @@ public class RelatorioCliente extends JPanel {
 			Map<String, Object> mp = new HashMap<>();
 			mp.put("endereco_c", "Avenida Curitiba, 681");
 			mp.put("telefone_c", "(45)8817-9098");
-			
-			
+
 			jsp = JasperFillManager.fillReport(arq, mp, new JRTableModelDataSource(tabelamodelo));
 
 			JasperExportManager.exportReportToPdfFile(jsp, ARQ_PDF);
-			Desktop.getDesktop()
-					.open(new File(ARQ_PDF));
+			Desktop.getDesktop().open(new File(ARQ_PDF));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	//Metodo que retorna na table a lista de cliente cadastrados
+
+	// Metodo que retorna na table a lista de cliente cadastrados
 	private TableModel getTabelaProduto() {
 		String[] columnNames = { "id_c", "nome", "telefone", "endereco", "cidade", "estado", "email", "genero" };
-		
-		
+
 		Object[][] dados = new Object[listacliente.size()][8];
 		for (int i = 0; i < listacliente.size(); i++) {
 			int x = 0;
@@ -218,23 +216,24 @@ public class RelatorioCliente extends JPanel {
 
 	}
 
-	//Metodo para filtrar por estado e por cidade
+	// Metodo para filtrar por estado e por cidade
 	protected void filtrarEstCid() {
 		if (cmbx_cidade.getSelectedItem() != "" && cmbx_estado.getSelectedItem() != "") {
 			StringBuilder filtracomando = new StringBuilder();
-			
-			filtracomando.append(comando + " WHERE ESTADO = '" + Estado.validar(cmbx_estado.getSelectedItem().toString())
-					+ "' AND CIDADE = '" + cmbx_cidade.getSelectedItem().toString() + "'");
+
+			filtracomando
+					.append(comando + " WHERE ESTADO = '" + Estado.validar(cmbx_estado.getSelectedItem().toString())
+							+ "' AND CIDADE = '" + cmbx_cidade.getSelectedItem().toString() + "'");
 			listacliente = tabelaCliente.mostraRelatorio(filtracomando.toString());
-			
+
 			tablecliente.setModel(tabelaCliente);
-			
+
 		} else {
 			JOptionPane.showMessageDialog(null, "Escolha a Cidade e o Estado que deseja Filtrar");
 		}
 	}
-	
-	//Método que carrega a table na tela
+
+	// Método que carrega a table na tela
 	private void carregartabela() {
 		tabelaCliente = new TabelaCliente();
 		listacliente = tabelaCliente.listar();
@@ -243,13 +242,13 @@ public class RelatorioCliente extends JPanel {
 				tablecliente.setModel(tabelaCliente);
 			}
 		}).start();
-		
+
 	}
-	
-	//Metodo que traz no combobox estados e cidades 
+
+	// Metodo que traz no combobox estados e cidades
 	private void mostradados() {
 		int in = 0;
-		
+
 		for (Estado e : Estado.values()) {
 			if (in == 0) {
 				cmbx_estado.addItem("");
@@ -257,13 +256,13 @@ public class RelatorioCliente extends JPanel {
 			}
 			cmbx_estado.addItem(e.getNome());
 		}
-		
+
 		for (int x = 0; x < listacliente.size(); x++) {
 			in = 0;
 			if (x == 0) {
 				cmbx_cidade.addItem("");
 			}
-			
+
 			for (int y = 0; y < cmbx_cidade.getItemCount(); y++) {
 				if (listacliente.get(x).getCidade().equals(cmbx_cidade.getItemAt(y).toString()))
 					in++;
@@ -274,8 +273,5 @@ public class RelatorioCliente extends JPanel {
 				cmbx_cidade.addItem(listacliente.get(x).getCidade());
 		}
 	}
-	
-
 
 }
-

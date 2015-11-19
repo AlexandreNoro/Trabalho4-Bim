@@ -259,6 +259,7 @@ public class MioloCadastroCliente extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Excluir();
+				limpar();
 
 			}
 		});

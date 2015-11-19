@@ -24,6 +24,8 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class PainelLogin extends JPanel {
@@ -111,6 +113,10 @@ public class PainelLogin extends JPanel {
 			if (txf_user.getText().equals(log.rs.getString("cliente"))
 					&& txf_senha.getText().equals(log.rs.getString("senha"))) {
 				acaoOk.run();
+
+				btnEntrar.addActionListener(e -> {
+					acessarSistema(acaoOk);
+				});
 			}
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(PainelLogin.this, "Usuário e/ou senha inválidos!");

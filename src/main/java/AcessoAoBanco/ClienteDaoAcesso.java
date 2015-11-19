@@ -18,7 +18,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 
-	// Método inserir Cliente 
+	// Método inserir Cliente
 	public int inserir(Cliente c) {
 
 		PreparedStatement ps;
@@ -36,7 +36,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 			ps.close();
 
 			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome() + " inserido com sucesso!!!");
-			
+
 			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class ClienteDaoAcesso implements AcessoDao<Cliente> {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-			
+
 			return 0;
 		}
 

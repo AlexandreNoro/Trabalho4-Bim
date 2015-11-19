@@ -201,8 +201,8 @@ public class TelaPrincipal extends JFrame {
 			}
 		}).start();
 	}
-	
-	//Metodo de acao do botao de bloquear tela 
+
+	// Metodo de acao do botao de bloquear tela
 	private void blockParaLogin() {
 		Runnable acaoOk = () -> {
 			glass.setVisible(false);
@@ -218,8 +218,6 @@ public class TelaPrincipal extends JFrame {
 		glass.setVisible(true);
 	}
 
-
-	
 	// Método para abrir a tela de cadastro de Clientes
 	private void abrirTela() {
 		TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
@@ -241,7 +239,7 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.remove(telaCadastroProduto);
-				
+
 			}
 		};
 		telaCadastroProduto.setCloseAction(action);
@@ -331,7 +329,7 @@ public class TelaPrincipal extends JFrame {
 		telaRelatorioVenda.setCloseAction(action);
 
 		tabbedPane.addTab("Relatório Vendas ", telaRelatorioVenda);
-		
+
 		mostraUltima();
 	}
 

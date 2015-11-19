@@ -13,13 +13,13 @@ public class TabelaUsuario extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		
+
 		return 4;
 	}
 
 	@Override
 	public int getRowCount() {
-		
+
 		return lista.size();
 	}
 

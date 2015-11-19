@@ -15,7 +15,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 
 	private Connection conexao = ConectarBanco.getInstace().abreConexao();
 
-	//Método inserir usuario
+	// Método inserir usuario
 	public int inserir(Usuario user) {
 
 		PreparedStatement ps;
@@ -36,12 +36,12 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 
 	}
 
-	//Método de atualizar usuario
+	// Método de atualizar usuario
 	public int atualizar(Usuario user) {
 		PreparedStatement ps;
 		try {
-			ps = conexao.prepareStatement("UPDATE USUARIO SET ID_C = ?, CLIENTE = ?, SENHA =? WHERE ID_U = "
-					+ user.getId());
+			ps = conexao.prepareStatement(
+					"UPDATE USUARIO SET ID_C = ?, CLIENTE = ?, SENHA =? WHERE ID_U = " + user.getId());
 			ps.setInt(1, user.getIdCliente());
 			ps.setString(2, user.getCliente());
 			ps.setString(3, user.getSenha());
@@ -56,13 +56,12 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 		}
 
 	}
-	
-	//Método excluir usuario
+
+	// Método excluir usuario
 	public int excluir(int user) {
 		PreparedStatement ps;
 		try {
-			ps = conexao.prepareStatement("DELETE FROM USUARIO WHERE ID_C = "
-					+ user);
+			ps = conexao.prepareStatement("DELETE FROM USUARIO WHERE ID_C = " + user);
 			int res = ps.executeUpdate();
 			ps.close();
 
@@ -71,22 +70,20 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-			
+
 			return 0;
 		}
 
 	}
-	
-	
-	//Método que realiza a busca do Usuario
+
+	// Método que realiza a busca do Usuario
 	public Usuario buscar(int user) {
 		Statement st = null;
 		ResultSet rs = null;
 		Usuario u = null;
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery("SELECT ID_C, CLIENTE, SENHA FROM USUARIO WHERE ID_U = "
-					+ user);
+			rs = st.executeQuery("SELECT ID_C, CLIENTE, SENHA FROM USUARIO WHERE ID_U = " + user);
 			rs.next();
 			if (rs.getString("CLIENTE") != null) {
 				u = new Usuario();
@@ -105,9 +102,8 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 		return null;
 
 	}
-	
-	
-	//Método para listar Usuario
+
+	// Método para listar Usuario
 	public List<Usuario> listar() {
 
 		Statement st = null;
@@ -119,7 +115,7 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 		try {
 			st = conexao.createStatement();
 			rs = st.executeQuery("SELECT ID_U, ID_C, CLIENTE, SENHA FROM USUARIO");
-			while (rs.next()) {				
+			while (rs.next()) {
 				u = new Usuario();
 				u.setId(rs.getInt("ID_U"));
 				u.setIdCliente(rs.getInt("ID_C"));
@@ -135,23 +131,24 @@ public class UsuarioDaoAcesso implements AcessoDao<Usuario> {
 			}
 
 		} catch (Exception e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 		return null;
 	}
-	//Metodo que retorna a conexao
+
+	// Metodo que retorna a conexao
 	public Connection getConexao() {
 		return conexao;
 
 	}
-	
-	
+
 	public boolean Testar(String user, String password) {
 		Statement st = null;
 		ResultSet rs = null;
 		try {
 			st = conexao.createStatement();
-			rs = st.executeQuery("SELECT CLIENTE, SENHA FROM USUARIO WHERE CLIENTE = '"+user+"' AND SENHA = '"+password+"'");
+			rs = st.executeQuery(
+					"SELECT CLIENTE, SENHA FROM USUARIO WHERE CLIENTE = '" + user + "' AND SENHA = '" + password + "'");
 			boolean v = rs.next();
 			rs.close();
 			rs.close();
