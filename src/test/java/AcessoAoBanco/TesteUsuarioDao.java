@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import br.univel.cadastroCliente.Usuario;
-
+//Testes dos métodos da classe UsuarioDaoAcesso com JUNIT
 public class TesteUsuarioDao {
 
 	@Test

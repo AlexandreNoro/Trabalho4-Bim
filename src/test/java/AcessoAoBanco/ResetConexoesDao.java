@@ -3,7 +3,7 @@ package AcessoAoBanco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+//Feito para poder deixar o banco zerado. Pra iniciar testes do zero.
 public class ResetConexoesDao {
 
 	Connection conexao = ConectarBanco.getInstace().abreConexao();

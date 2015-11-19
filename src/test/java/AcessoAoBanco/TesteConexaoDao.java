@@ -3,7 +3,7 @@ package AcessoAoBanco;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
+//Testes dos métodos da classe ConectarBanco com JUNIT
 public class TesteConexaoDao {
 
 	@Test

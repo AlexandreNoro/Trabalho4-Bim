@@ -8,7 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import br.univel.cadastroCliente.Vendas;
-
+//Testes dos métodos da classe VendaDaoAcesso com JUNIT
 public class TesteVendaDao {
 
 	@Test

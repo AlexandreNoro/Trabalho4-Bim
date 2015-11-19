@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import org.junit.Test;
 
 import br.univel.cadastroCliente.Produto;
-
+//Testes dos métodos da classe ProdutoDaoAcesso com JUNIT
 public class TesteProdutoDao {
 
 	@Test
