@@ -345,7 +345,7 @@ public class MioloCadastroVendas extends JPanel {
 	// Metodo excluir
 	protected void Excluir() {
 
-		vda.excluir(tablemiolovendas.getSelectedRow());
+		vda.excluir(listavendas.get(tablemiolovendas.getSelectedRow()).getCod_v());
 		tabelaVendas.excluir(tablemiolovendas.getSelectedRow());
 
 	}

@@ -241,7 +241,7 @@ public class MioloCadastroUsuario extends JPanel {
 	// metodo excluir(deletar) usuarios cadastrados
 	protected void Excluir() {
 
-		user.excluir(tablemiolousuario.getSelectedRow());
+		user.excluir(listausuario.get(tablemiolousuario.getSelectedRow()).getId());
 		tabelaUsuario.excluir(tablemiolousuario.getSelectedRow());
 
 	}

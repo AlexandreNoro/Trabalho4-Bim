@@ -230,6 +230,8 @@ public class TelaPrincipal extends JFrame {
 		telaCadastroCliente.setCloseAction(action);
 
 		tabbedPane.addTab("Cadastrar Cliente ", telaCadastroCliente);
+		
+		mostraUltima();
 	}
 
 	// Método para abrir a tela de cadastro de produtos

@@ -105,13 +105,13 @@ public class PainelLogin extends JPanel {
 			log.st = log.con.createStatement();
 
 			String sql = "SELECT CLIENTE,SENHA FROM USUARIO WHERE CLIENTE='" + txf_user.getText() + "' AND SENHA = '"
-					+ txf_senha.getText() + "'";
+					+ String.valueOf(txf_senha.getPassword()) + "'";
 			log.rs = log.st.executeQuery(sql);
 
 			log.rs.first();
 
 			if (txf_user.getText().equals(log.rs.getString("cliente"))
-					&& txf_senha.getText().equals(log.rs.getString("senha"))) {
+					&& String.valueOf(txf_senha.getPassword()).equals(log.rs.getString("senha"))) {
 				acaoOk.run();
 
 				btnEntrar.addActionListener(e -> {

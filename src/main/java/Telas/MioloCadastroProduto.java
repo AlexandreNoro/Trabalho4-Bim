@@ -318,7 +318,7 @@ public class MioloCadastroProduto extends JPanel {
 	// Metodo para excluir(deletar) produto
 	protected void Excluir() {
 
-		pda.excluir(tablemioloproduto.getSelectedRow());
+		pda.excluir(listaproduto.get(tablemioloproduto.getSelectedRow()).getcod_p());
 		tabelaProduto.excluir(tablemioloproduto.getSelectedRow());
 
 	}
