@@ -23,6 +23,7 @@
 # Configuração Necessária para rodar a aplicação
 	
 	- Versão do java instalado na máquina: Versão 8
+	- Sistema operacional Windows x32 ou x64
 	
 	
 	
