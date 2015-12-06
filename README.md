@@ -35,7 +35,7 @@
 
 - Monitor: A aceleração de hardware gráfico exige uma placa gráfica DirectX10 e um monitor de resolução 1024 x 576 ou superior;
 
-- Sistema operacional: O Sistema Noro é executado em versões de 32 bits e de 64 bits dos S.O.S do Microsoft Windows. Quando você executa o SN de 32 bits em uma versão de 64 bits de um sistema operacional Windows, o programa é executado na camada de 32 bits do Windows. Para saber mais, consulte Versões de 64 bits do SN. Estes são os sistemas operacionais Windows suportados nos quais é possível executar programas de 32 bits e 64 bits do Office 2013.
+- Sistema operacional: O Sistema Noro é executado em versões de 32 bits e de 64 bits dos S.O.S do Microsoft Windows. Quando você executa o SN de 32 bits em uma versão de 64 bits de um SO Windows, o programa é executado na camada de 32 bits do Windows. Para saber mais, consulte Versões de 64 bits do SN. Estes são os S.O.S Windows suportados nos quais é possível executar programas de 32 bits e 64 bits do Office 2013.
 
 **O software de 32 bits do SN têm suporte nos seguintes sistemas operacionais do Windows:**
 
